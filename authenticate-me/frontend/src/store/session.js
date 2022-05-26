@@ -1,9 +1,11 @@
 import { csrfFetch } from './csrf';
 
+/***************************************************************************************************/ 
+
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
 
-
+/***************************************************************************************************/ 
 
 //Actions
 const setUser = (user) => {
@@ -19,7 +21,7 @@ const removeUser = () => {
   };                                                                                    
 };
 
-
+/***************************************************************************************************/ 
 
 //Thunks
 export const login = (user) => async (dispatch) => {
@@ -37,6 +39,15 @@ export const login = (user) => async (dispatch) => {
 };
 
 
+export const restoreUser = () => async dispatch => {
+    const response = await csrfFetch('/api/session');
+    const data = await response.json();
+    dispatch(setUser(data.user));
+    return response;
+};
+
+
+/***************************************************************************************************/ 
 
 const initialState = { user: null };
 
@@ -57,5 +68,7 @@ const sessionReducer = (state = initialState, action) => {
   }
 };
 
+
+/***************************************************************************************************/ 
 
 export default sessionReducer;
