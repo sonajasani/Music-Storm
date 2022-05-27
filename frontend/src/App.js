@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import LoginFormPage from './components/LoginFormPage';
 
 /*************************************************************************************************/
 
@@ -22,6 +23,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route path="/login">
+            <LoginFormPage />
+          </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route>
