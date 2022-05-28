@@ -1,5 +1,6 @@
 const express = require('express')
-const asyncHandler = require('express-async-handler');const { check } = require('express-validator');
+const asyncHandler = require('express-async-handler');
+const { check } = require('express-validator');
 
 
 const { handleValidationErrors } = require('../../utils/validation');
@@ -42,7 +43,7 @@ router.post('/', validateSignup, asyncHandler(async (req, res) => {
 );
 
 
-
+/************************************************************************************************************************************/
 
 
 module.exports = router;
