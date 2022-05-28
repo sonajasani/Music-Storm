@@ -9,18 +9,26 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       title: {
+        allowNull: false,
+        type: Sequelize.STRING(100)
+      },
+      audioFile: {
+        allowNull: false,
         type: Sequelize.STRING
       },
-      audio_file: {
+      imageFile: {
         type: Sequelize.STRING
       },
-      image_file: {
-        type: Sequelize.STRING
+      artist: {
+        allowNull: false,
+        type: Sequelize.STRING(20)
       },
-      artist_id: {
-        type: Sequelize.INTEGER
+      album: {
+        allowNull: false,
+        type: Sequelize.STRING(50)
       },
       description: {
+        allowNull: false,
         type: Sequelize.TEXT
       },
       createdAt: {

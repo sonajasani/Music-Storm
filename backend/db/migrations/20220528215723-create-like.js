@@ -1,21 +1,26 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Comments', {
+    return queryInterface.createTable('Likes', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      content: {
-        type: Sequelize.TEXT
+      liked: {
+        type: Sequelize.BOOLEAN,
+        default: false
       },
-      song_id: {
-        type: Sequelize.INTEGER
+      songId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model : 'Songs', key: 'id'}
       },
-      user_id: {
-        type: Sequelize.INTEGER
+      likerId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model : 'Users', key: 'id'}
       },
       createdAt: {
         allowNull: false,
@@ -28,6 +33,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Comments');
+    return queryInterface.dropTable('Likes');
   }
 };
