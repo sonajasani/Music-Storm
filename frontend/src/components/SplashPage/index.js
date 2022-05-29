@@ -2,15 +2,15 @@ import React, {useState} from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import ProfileButton from './ProfileButton';
+import ProfileButton from '../DiscoverPage/ProfileButton';
 import * as sessionActions from '../../store/session';
-import './Navigation.css';
-import logo from "./logo.jpg";
+import './SplashPage.css';
+
 
 /*******************************************************************************************************************/
 
 
-function Navigation({ isLoaded }){
+function SplashPage({ isLoaded }){
 
   const [credential, setCredential] = useState('');
   const [password, setPassword] = useState('');
@@ -64,7 +64,7 @@ function Navigation({ isLoaded }){
           <NavLink id="homeBtn" exact to="/">
             MusicStorm
           </NavLink>
-          <NavLink className="home" exact to="/">Home</NavLink>
+          <NavLink className="home" exact to="/discover">Discover</NavLink>
         </div>
         <div className="github-link">
           <a href="https://github.com/sonajasani" id="github">Github</a>
@@ -89,4 +89,4 @@ function Navigation({ isLoaded }){
 
 /*******************************************************************************************************************/
 
-export default Navigation;
+export default SplashPage;

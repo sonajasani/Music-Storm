@@ -36,6 +36,7 @@ export const getAllSongs = () => async (dispatch) => {
     if (response.ok) {
         const list = await response.json();
         dispatch(getSongs(list));
+        return response;
     }
 };
 
