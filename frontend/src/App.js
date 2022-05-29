@@ -6,6 +6,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import LoginFormPage from './components/LoginFormPage';
+import AllSongsPage from "./components/AllSongsPage";
 
 /*************************************************************************************************/
 
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path="/dashboard">
+            <AllSongsPage />
           </Route>
         </Switch>
       )}
