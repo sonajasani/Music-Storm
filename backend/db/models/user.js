@@ -53,6 +53,7 @@ module.exports = (sequelize, DataTypes) => {
     User.hasMany(models.Playlist, {foreignKey: 'userId'})
     User.belongsToMany(models.User, {through: 'Playlist',
     foreignKey: 'userId',
+    as: 'songs',
     otherKey: 'songId'})
   };
 

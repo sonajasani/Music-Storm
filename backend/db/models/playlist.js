@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const Playlist = sequelize.define('Playlist', {
     name: {
       allowNull: false,
-      type: Database.STRING(30)
+      type: DataTypes.STRING(30)
     },
     userId: {
       allowNull: false,

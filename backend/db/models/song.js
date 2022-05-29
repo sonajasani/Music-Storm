@@ -30,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     Song.hasMany(models.Like, {foreignKey: 'songId'})
     Song.hasMany(models.Playlist, {foreignKey: 'songId'})
     Song.belongsToMany(models.User, {through: 'Playlist',
+    as: 'users',
     foreignKey: 'songId',
     otherKey: 'userId'})
   };
