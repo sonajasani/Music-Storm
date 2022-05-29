@@ -21,7 +21,7 @@ module.exports = {
       },
       artist: {
         allowNull: false,
-        type: Sequelize.STRING(20)
+        type: Sequelize.STRING(100)
       },
       album: {
         allowNull: false,
@@ -30,14 +30,6 @@ module.exports = {
       description: {
         allowNull: false,
         type: Sequelize.TEXT
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
       }
     });
   },

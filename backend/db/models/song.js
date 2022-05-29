@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     artist: {
       allowNull: false,
-      type: DataTypes.STRING(20)
+      type: DataTypes.STRING(100)
     },
     album: {
       allowNull: false,

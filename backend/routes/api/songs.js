@@ -58,8 +58,17 @@ router.get("/:id", asyncHandler(async (req, res) => {
     })
 );
 
+
+//get trending songs
+router.get("/trendings", asyncHandler(async (req, res) => {
+
+      const trendings = await Song.findAll({ limit: 15 });
+      return res.json({ trendings });
+    })
+  );
+
 //create/upload a song
-router.post("/", songValidators, upload.single("audioFile"), asyncHandler(async (req, res) => {
+router.post("/upload", songValidators, upload.single("audioFile"), asyncHandler(async (req, res) => {
 
         const { title, imageFile, artist, audioFile, description, album } = req.body;
     
