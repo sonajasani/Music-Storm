@@ -6,7 +6,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import LoginFormPage from './components/LoginFormPage';
-import AllSongsPage from "./components/AllSongsPage";
+
 
 /*************************************************************************************************/
 
@@ -21,7 +21,6 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
           <Route path="/login">
@@ -30,8 +29,8 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/dashboard">
-            <AllSongsPage />
+          <Route path="/discover">
+            <Navigation isLoaded={isLoaded} />
           </Route>
         </Switch>
       )}
