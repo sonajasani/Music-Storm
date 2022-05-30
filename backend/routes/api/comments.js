@@ -10,6 +10,7 @@ const router = express.Router();
 
 /********************************************************************************************************************************/
 
+//Comments Validation
 const commentValidation = [
     check('content')
       .trim()
@@ -19,6 +20,8 @@ const commentValidation = [
       .withMessage('Comment cannot be longer than 280 characters.'),
     handleValidationErrors,
 ];
+
+/********************************************************************************************************************************/
 
 
 const unauthorizedError = () => {
@@ -30,7 +33,7 @@ const unauthorizedError = () => {
   return error;
 };
 
-router.get('/', asyncHandler(async (_req, res) => {
+router.get('/', asyncHandler(async (req, res) => {
     const comments = await Comment.findAll();
     return res.json({
       comments,

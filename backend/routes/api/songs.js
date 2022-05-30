@@ -2,10 +2,10 @@ const express = require('express')
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 
+const { requireAuth } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
-const db = require('../../db/models');
+const { User, Song, Comment }= require('../../db/models');
 const {singlePublicFileUpload, singlePublicFileDelete, multerFieldsUpload, multiplePublicFileUpload} = require('../../awsS3');
-  
 
 const router = express.Router();
 
@@ -41,10 +41,28 @@ const songValidators = [
 /************************************************************************************************************************************/
 
 
+const songNotFoundError = () => {
+    const songError = new Error('Song not found.');
+    songError.status = 404;
+    songError.title = 'Song not found.';
+    songError.errors = {
+      songId: `The requested track could not be found.`,
+    };
+  
+    return songError;
+};
+  
+
 //get all songs
 router.get("/", asyncHandler(async (req, res) => {
 
-      const songs = await db.Song.findAll();
+      const songs = await db.Song.findAll({
+          include: {
+              model: Comment,
+              as: 'comments',
+              attributes: [id],
+          }
+      });
       return res.json({ songs });
     })
 );
@@ -54,7 +72,19 @@ router.get("/", asyncHandler(async (req, res) => {
 router.get("/:id", asyncHandler(async (req, res) => {
 
       const id = req.params.id;
-      const song = await db.Song.findByPk(id);
+      const song = await Song.findOne({
+        where: { id: id },
+        include: {
+          model: Comment,
+          as: 'comments',
+          attributes: ['id'],
+        },
+      });
+
+      if (!song) {
+        return next(songNotFoundError());
+      }
+
       return res.json({ song });
     })
 );
@@ -63,13 +93,21 @@ router.get("/:id", asyncHandler(async (req, res) => {
 //get trending songs
 router.get("/trendings", asyncHandler(async (req, res) => {
 
-      const trendings = await Song.findAll({ limit: 15 });
-      return res.json({ trendings });
+        const trendings = await Song.findAll({
+            limit: 15,
+            include: {
+                model: Comment,
+                as: 'comments',
+                attributes: ['id'],
+            },
+        });
+
+        return res.json({ trendings });
     })
   );
 
 //create/upload a song
-router.post("/upload", songValidators, multerFieldsUpload(), asyncHandler(async (req, res) => {
+router.post("/", requireAuth, multerFieldsUpload(), songValidators, asyncHandler(async (req, res) => {
 
         const { title, imageFile, artist, audioFile, description, album } = req.body;
     
@@ -89,6 +127,68 @@ router.post("/upload", songValidators, multerFieldsUpload(), asyncHandler(async 
     })
 );
 
+//update a song
+router.put("/:id", requireAuth, multerFieldsUpload(), songValidators, asyncHandler(async (req, res) => {
+
+        const id = req.params.id; 
+        const song = Song.findOne(id);
+
+        if(song){
+            const { title, imageFile, artist, audioFile, description, album } = req.body;
+            const updatedSong = await db.Song.create({
+                title,
+                imageFile,
+                artist,
+                audioFile,
+                description,
+                album,
+            });
+
+            if (updatedSong) {
+                return res.json({ updatedSong });
+            } else return res.json({});
+        }
+    })
+);
+
+
+router.delete('/:id', requireAuth, asyncHandler(async (req, res) => {
+      const songId = req.params.id;
+      const song = await song.getTrackById(songId);
+  
+      if (song) {
+        const key = getObjectKey(track.trackUrl);
+        const user = req.user;
+        await singlePublicFileDelete(key);
+  
+        await song.destroy();
+        res.status(204).json({ message: 'You have deleted your song.'});
+      } else {
+        res.status(404).json({ message: 'Track does not exist.' });
+      }
+    })
+);
+
+
+router.get('/:id/comments', asyncHandler(async (req, res, next) => {
+
+      const songId = req.params.id;
+      const song = await Song.findOne({
+        where: { id: songId },
+        include: {
+          model: Comment,
+          as: 'comments',
+        },
+      });
+  
+      if (!song) {
+        return next(songNotFoundError());
+      }
+  
+      const { comments } = song;
+      return res.json({comments});
+    })
+);
 
 
 /************************************************************************************************************************************/

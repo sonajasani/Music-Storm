@@ -31,6 +31,9 @@ const validateSignup = [
     handleValidationErrors
 ];
 
+/********************************************************************************************************************************/
+
+
 // Sign up
 router.post('/', validateSignup, asyncHandler(async (req, res) => {
       const { email, password, username } = req.body;
