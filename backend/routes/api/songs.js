@@ -39,30 +39,12 @@ const songValidators = [
 
 
 /************************************************************************************************************************************/
-
-
-const songNotFoundError = () => {
-    const songError = new Error('Song not found.');
-    songError.status = 404;
-    songError.title = 'Song not found.';
-    songError.errors = {
-      songId: `The requested track could not be found.`,
-    };
-  
-    return songError;
-};
-  
+ 
 
 //get all songs
 router.get("/", asyncHandler(async (req, res) => {
 
-      const songs = await db.Song.findAll({
-          include: {
-              model: Comment,
-              as: 'comments',
-              attributes: [id],
-          }
-      });
+      const songs = await Song.findAll({});
       return res.json({ songs });
     })
 );
@@ -80,10 +62,6 @@ router.get("/:id", asyncHandler(async (req, res) => {
           attributes: ['id'],
         },
       });
-
-      if (!song) {
-        return next(songNotFoundError());
-      }
 
       return res.json({ song });
     })
@@ -180,10 +158,6 @@ router.get('/:id/comments', asyncHandler(async (req, res, next) => {
           as: 'comments',
         },
       });
-  
-      if (!song) {
-        return next(songNotFoundError());
-      }
   
       const { comments } = song;
       return res.json({comments});
