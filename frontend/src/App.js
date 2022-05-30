@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 
-import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import DiscoverPage from "./components/DiscoverPage";
 import SplashPage from "./components/SplashPage";
-import LoginFormPage from './components/LoginFormPage';
+
 
 
 /*************************************************************************************************/
