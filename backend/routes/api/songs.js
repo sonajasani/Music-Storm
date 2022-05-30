@@ -4,7 +4,8 @@ const { check } = require('express-validator');
 
 const { handleValidationErrors } = require('../../utils/validation');
 const db = require('../../db/models');
-const  { upload } = require("../../multer");
+const {singlePublicFileUpload, singlePublicFileDelete, multerFieldsUpload, multiplePublicFileUpload} = require('../../awsS3');
+  
 
 const router = express.Router();
 
@@ -68,7 +69,7 @@ router.get("/trendings", asyncHandler(async (req, res) => {
   );
 
 //create/upload a song
-router.post("/upload", songValidators, upload.single("audioFile"), asyncHandler(async (req, res) => {
+router.post("/upload", songValidators, multerFieldsUpload(), asyncHandler(async (req, res) => {
 
         const { title, imageFile, artist, audioFile, description, album } = req.body;
     

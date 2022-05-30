@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser');
 const { environment } = require('./config');
 const isProduction = environment === 'production';
 const { ValidationError } = require('sequelize');
+const { MulterError } = require('multer');
 
 const routes = require('./routes');
 
@@ -15,6 +16,7 @@ const app = express();
 
 app.use(morgan('dev'));
 app.use(cookieParser());
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 
@@ -28,7 +30,9 @@ if (!isProduction) {
 // helmet helps set a variety of headers to better secure your app
 app.use(
     helmet.crossOriginResourcePolicy({ 
-      policy: "cross-origin" 
+      policy: "cross-origin" ,
+      crossOriginResourcePolicy: { policy: 'cross-origin' },
+      crossOriginEmbedderPolicy: false,
     })
 );
 
@@ -69,6 +73,16 @@ app.use((err, _req, _res, next) => {
   next(err);
 });
 
+app.use((err, _req, res, next) => {
+  if (err instanceof MulterError) {
+    if (err.code === 'LIMIT_FILE_SIZE') {
+      err.message = 'File size cannot exceed 10MB.';
+    }
+    err.title = 'File upload error';
+    err.errors = { trackFile: `${error.message}` };
+  }
+  res.status(400).send(err);
+});
 
 // Error formatter
 app.use((err, _req, res, _next) => {
