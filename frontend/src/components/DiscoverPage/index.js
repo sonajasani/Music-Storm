@@ -19,7 +19,7 @@ function DiscoverPage({ isLoaded }){
 
   useEffect(() => {
     dispatch(getAllSongs());
-  }, [dispatch]);
+  }, [dispatch]); 
 
 
   let sessionLinks;
