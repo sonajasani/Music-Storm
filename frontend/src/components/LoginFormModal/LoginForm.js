@@ -1,7 +1,7 @@
 // frontend/src/components/LoginFormModal/LoginForm.js
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 import * as sessionActions from "../../store/session";
 import "./LoginForm.css";
@@ -10,7 +10,6 @@ import "./LoginForm.css";
 
 function LoginForm() {
     const dispatch = useDispatch();
-    const history = useHistory();
 
     const sessionUser = useSelector((state) => state.session.user);
     const [credential, setCredential] = useState("");
