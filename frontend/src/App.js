@@ -6,6 +6,8 @@ import * as sessionActions from "./store/session";
 import DiscoverPage from "./components/DiscoverPage";
 import SplashPage from "./components/SplashPage";
 import ProfilePage from "./components/ProfilePage"
+import LoginFormPage from "./components/LoginFormPage";
+import SignupFormPage from "./components/SignupFormPage"
 
 
 
@@ -24,6 +26,12 @@ function App() {
     <>
       {isLoaded && (
         <Switch>
+          <Route path="/login">
+            <LoginFormPage />
+          </Route>
+          <Route path="/signup">
+            <SignupFormPage />
+          </Route>
           <Route path="/profile">
             <ProfilePage />
           </Route>
