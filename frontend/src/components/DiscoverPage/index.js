@@ -36,10 +36,10 @@ function DiscoverPage({ isLoaded }){
         <nav id="nav">
           <div id="logo">
             <img id="logo" alt="" src={logo}></img>
-            <NavLink id="homeBtn" exact to="/">
+            <NavLink id="homeBtn" exact to="/discover">
               MusicStorm
             </NavLink>
-            <NavLink className="home" exact to="/">Home</NavLink>
+            <NavLink className="home" exact to="/discover">Home</NavLink>
           </div>
           <div className="github-link">
             <a href="https://github.com/sonajasani" id="github">Github</a>
@@ -50,7 +50,7 @@ function DiscoverPage({ isLoaded }){
                   <i className="fas fa-search"></i>
             </button>
           </div>
-          <NavLink id="uploadbtn" to="/upload">
+          <NavLink id="uploadbtn" to="/upload" >
                 Upload
           </NavLink>
           <NavLink id="navProfile" to="/profile">

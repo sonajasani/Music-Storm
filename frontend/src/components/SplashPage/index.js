@@ -54,7 +54,7 @@ function SplashPage(){
             type="hidden"
             value={password}
           />
-          <button className="demo-btn" type="submit">Guest User</button>
+            <button className="demo-btn" type="submit">Guest User</button>
           </form>
         </div>
       </>
@@ -80,16 +80,18 @@ function SplashPage(){
         </nav>
       </div>
       <div className="search-or-upload">
-        <div className="splash-search-bar">
-          <input id="splash-searchInput" type="search" name="term" placeholder="Search for artists, albums, tracks" required></input>
-          <button className="splash-searchbtn">
-                <i className="fas fa-search"></i>
-          </button>
-        </div>
+        <NavLink to="/login">
+          <div className="splash-search-bar">
+            <input id="splash-searchInput" type="search" name="term" placeholder="Search for artists, albums, tracks" required></input>
+            <button className="splash-searchbtn">
+                  <i className="fas fa-search"></i>
+            </button>
+          </div>
+        </NavLink>
         <div className="or-text">
           <p>or</p>
         </div>
-        <NavLink id="splash-uploadbtn" to="/upload">
+        <NavLink id="splash-uploadbtn" to="/login">
               Upload your own
         </NavLink>
       </div>

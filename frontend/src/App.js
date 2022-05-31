@@ -8,7 +8,8 @@ import SplashPage from "./components/SplashPage";
 import ProfilePage from "./components/ProfilePage"
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage"
-
+import SongPage from "./components/SongPage"
+import UploadFormPage from "./components/UploadFormPage"
 
 
 /*************************************************************************************************/
@@ -40,6 +41,12 @@ function App() {
           </Route>
           <Route path="/">
             <SplashPage />
+          </Route>
+          <Route path='/songs/songId}'>
+            <SongPage />
+          </Route>
+          <Route path="/upload">
+            <UploadFormPage />
           </Route>
         </Switch>
       )}
