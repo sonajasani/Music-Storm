@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 
-const { Comment, Song } = require('../../db/models');
+const { Comment, Song, User } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -24,93 +24,85 @@ const commentValidation = [
 /********************************************************************************************************************************/
 
 
-const unauthorizedError = () => {
-  const error = new Error('Unauthorized');
-  error.status = 401;
-  error.title = 'Unauthorized';
-  error.errors = ['You are not authorized to update this comment.'];
-
-  return error;
-};
-
-router.get('/', asyncHandler(async (req, res) => {
-    const comments = await Comment.findAll();
-    return res.json({
-      comments,
+router.get("/:songId", asyncHandler(async (req, res) => {
+    const comments = await Comment.findAll({
+      where: { songId: parseInt(req.params.songId) },
+      include: [
+        {
+          model: User,
+        },
+      ],
+      order: [["createdAt", "DESC"]],
     });
+    return res.json({ comments });
   })
 );
 
+// create new comment
+router.post("/:songId", asyncHandler(async (req, res) => {
+    const songId = parseInt(req.params.songId);
+    const { content, commenterId } = req.body;
 
-router.get('/:id', asyncHandler(async (req, res, next) => {
-
-    const id = req.params.id;
-    const comment = await Comment.findByPk(id);
-    if (!comment) {
-      return next();
-    }
-
-    return res.json({comment});
-  })
-);
-
-
-router.post('/', requireAuth, commentValidation, asyncHandler(async (req, res, next) => {
-    const { commenterId, songId, content} = req.body;
-    const Song = await Song.findByPk(songId);
-
-    if (!Song) {
-      return next();
-    }
-
-    const comment = await Comment.create({
+    await Comment.create({
+      content,
       commenterId,
       songId,
-      content
     });
 
-    return res.json({comment});
+    const comments = await Comment.findAll({
+      where: { songId: songId },
+      include: [
+        {
+          model: User,
+        },
+      ],
+      order: [["createdAt", "DESC"]],
+    });
+
+    return res.json({ comments });
   })
 );
 
-router.put('/:id', requireAuth, commentValidation, asyncHandler(async (req, res, next) => {
-    const id = req.params.id;
-    const oldComment = await Comment.findByPk(id);
-
-    if (!oldComment) {
-      return next();
-    }
-
-    const { commenterId, content } = req.body;
-
-    if (oldComment.commenterId !== commenterId) {
-      return next(unauthorizedError());
-    }
-
-    await oldComment.update({ content });
+router.delete("/delete", asyncHandler(async (req, res) => {
+    const { id, songId, commenterId } = req.body;
     const comment = await Comment.findByPk(id);
-
-    return res.json({
-      comment,
-    });
-  })
-);
-
-router.delete('/:id', requireAuth, asyncHandler(async (req, res, next) => {
-    const id = req.params.id;
-    const comment = await Comment.findByPk(id);
-
-    if (!comment) {
-      return next();
-    }
-
-    if (comment.commenterId !== req.user.id) {
-      return next(unauthorizedError());
-    }
+    if (commenterId !== comment.commenterId) return;
 
     await comment.destroy();
 
-    return res.status(204).json({});
+    const comments = await Comment.findAll({
+      where: { songId: songId },
+      include: [
+        {
+          model: User,
+        },
+      ],
+      order: [["createdAt", "DESC"]],
+    });
+
+    return res.json({ comments });
+  })
+);
+
+router.put( "/update", asyncHandler(async (req, res) => {
+    const { id, comment, songId, commenterId } = req.body;
+    const commentUpdate = await Comment.findByPk(id);
+    if (commenterId !== commentUpdate.cmmenterId) return;
+
+    commentUpdate.comment = comment;
+    await commentUpdate.save();
+
+    const comments = await Comment.findAll({
+      where: { songId: songId },
+      include: [
+        {
+          model: User,
+        },
+      ],
+      order: [["createdAt", "DESC"]],
+    });
+
+    return res.json({ comments });
   })
 );
 

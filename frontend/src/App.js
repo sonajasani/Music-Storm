@@ -10,6 +10,8 @@ import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage"
 import SongPage from "./components/SongPage"
 import UploadFormPage from "./components/UploadFormPage"
+import EditSongForm from "./components/EditSongForm"
+import Navigation from "./components/Navigation"
 
 
 /*************************************************************************************************/
@@ -39,14 +41,19 @@ function App() {
           <Route path="/discover">
             <DiscoverPage isLoaded={isLoaded} />
           </Route>
-          <Route path="/">
+          <Route path="/" exact>
             <SplashPage />
           </Route>
-          <Route path='/songs/songId}'>
-            <SongPage />
+          <Route path='/songs/:songId'>
+            <SongPage isLoaded={isLoaded} />
           </Route>
           <Route path="/upload">
+            <Navigation isLoaded={isLoaded} />
             <UploadFormPage />
+          </Route>
+          <Route path="/songs/:songId/edit">
+            <Navigation isLoaded={isLoaded} />
+            <EditSongForm />
           </Route>
         </Switch>
       )}

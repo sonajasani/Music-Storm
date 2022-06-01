@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 /**********************************************************************************************************************************/
 
 const LOAD_SONGS = "songs/LOAD_SONGS";
+const GET_ONE_SONG = "songs/GET_ONE_SONG";
 const ADD_ONE_SONG = "songs/ADD_ONE_SONG";
 const TRENDING_SONG = "songs/TRENDING_SONG";
 const LOAD_USER_SONGS = "songs/LOAD_USER_SONGS";
@@ -17,6 +18,13 @@ const getSongs = (songs) => {
       type: LOAD_SONGS,
       songs,
     };
+};
+
+const getSong = (song) => {
+  return {
+    type: GET_ONE_SONG,
+    song,
+  };
 };
 
 const addOneSong = (song) => {
@@ -68,10 +76,9 @@ export const getAllSongs = () => async (dispatch) => {
 export const getOneSong = (id) => async (dispatch) => {
     const response = await csrfFetch(`/api/songs/${id}`);
   
-    if (response.ok) {
       const Song = await response.json();
-      dispatch(addOneSong(Song));
-    }
+      dispatch(getSong(Song));
+      return response;
 };
 
 
@@ -174,13 +181,12 @@ const songsReducer = (state = initialState, action) => {
         case LOAD_SONGS:
             newState = Object.assign({}, state, { songs: action.songs });
             return newState;
+        case GET_ONE_SONG:
+            newState = Object.assign({}, state, { songs: action.song });
+            return newState;
         case ADD_ONE_SONG:
-            return {
-              ...state,
-              [action.song.id]: {
-                ...action.songs
-              }
-            };
+            newState = Object.assign({}, state, { songs: action.songs });
+            return newState;
         case TRENDING_SONG:
             newState = Object.assign({}, state, { songs: action.songs });
             return newState;

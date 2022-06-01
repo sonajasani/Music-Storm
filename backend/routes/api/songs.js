@@ -51,21 +51,14 @@ router.get("/", asyncHandler(async (req, res) => {
 
 
 //get a specific song
-router.get("/:id", asyncHandler(async (req, res) => {
-
-      const id = req.params.id;
-      const song = await Song.findOne({
-        where: { id: id },
-        include: {
-          model: Comment,
-          as: 'comments',
-          attributes: ['id'],
-        },
-      });
-
-      return res.json({ song });
+router.get(
+    "/:id",
+    asyncHandler(async (req, res) => {
+      const songId = req.params.id;
+      const oneSong = await Song.findByPk(songId);
+      return res.json({ oneSong });
     })
-);
+  );
 
 
 //get trending songs

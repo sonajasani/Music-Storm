@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
 
-import { addSong } from "../../store/songs";
-import { useHistory } from "react-router-dom";
-import "./UploadFormPage.css";
+import { updateSong } from "../../store/songs";
+import "./EditSongForm.css";
 
 /***************************************************************************************************************************/
 
 
-function UploadFormPage() {
+function EditSongForm() {
 
     const [title, setTitle] = useState("");
     const [artist, setArtist] = useState("");
@@ -16,8 +16,11 @@ function UploadFormPage() {
     const [album, setAlbum] = useState("");
     const [imageFile, setimageFile] = useState("");
     const [audioFile, setAudioFile] = useState(null);
+    const { songId } = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
+
+    
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -29,7 +32,7 @@ function UploadFormPage() {
           imageFile,
           audioFile,
         };
-        const newSong = dispatch(addSong(song));
+        dispatch(updateSong(song));
         history.push(`/discover`);
       };
 
@@ -108,4 +111,4 @@ function UploadFormPage() {
 /***************************************************************************************************************************/
 
 
-export default UploadFormPage;
+export default EditSongForm;
