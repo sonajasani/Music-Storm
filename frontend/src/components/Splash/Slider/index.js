@@ -6,6 +6,8 @@ import Modal from "react-modal";
 import LoginForm from "../../LoginFormModal/LoginForm";
 
 
+
+
 export const SliderData = [
   {
     image:
@@ -15,24 +17,21 @@ export const SliderData = [
     image:
       "https://i2.wp.com/www.vervemagazine.in/wp-content/uploads/2014/01/A-R-Rahman-3.jpg?ssl=1",
   },
-]
+];
+
 
 export default function Slider() {
-  // const length = SliderData.length;
+
   const image1 = useRef();
   const image2 = useRef();
   const slidebtn1 = useRef();
   const slidebtn2 = useRef();
 
   const dispatch = useDispatch();
-
   const loginState = useSelector((state) => state.modal.loginShow);
-
   const closeModal = () => dispatch(closeLogin());
-
-  
-
   const [slider, setSlider] = useState([]);
+
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -43,9 +42,8 @@ export default function Slider() {
     return () => clearInterval(timer);
   });
 
+ 
 
-
-  // switched to spans to see if that was the issue with a bug where the array would reset
   useEffect(() => {
     const imgs = [
       <span key={0} ref={image1}>
@@ -116,6 +114,16 @@ export default function Slider() {
   return (
     <div className="splash-slider-container">
       <div className="slide">{slider}</div>
+      {/* <button
+        ref={slidebtn1}
+        className="slidbtns"
+        onClick={slideChange}
+      ></button>
+      <button
+        ref={slidebtn2}
+        className="slidbtns"
+        onClick={slideChange}
+      ></button> */}
     </div>
   );
 }
