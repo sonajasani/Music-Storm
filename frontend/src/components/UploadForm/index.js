@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { postSong } from "../../store/songs";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import "./UploadForm.css";

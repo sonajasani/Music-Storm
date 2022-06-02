@@ -40,6 +40,7 @@ function App() {
             <UploadForm />
           </Route>
           <Route to="profile">
+          <Navigation isLoaded={isLoaded} />
             <UserProfile />
           </Route>
           <Route>
