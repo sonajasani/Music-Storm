@@ -1,66 +1,54 @@
-import React, { useState, useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { useDispatch } from "react-redux";
-
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Route, Switch, Redirect } from "react-router-dom";
 import * as sessionActions from "./store/session";
-import DiscoverPage from "./components/DiscoverPage";
-import SplashPage from "./components/SplashPage";
-import ProfilePage from "./components/ProfilePage"
-import LoginFormPage from "./components/LoginFormPage";
-import SignupFormPage from "./components/SignupFormPage"
-import SongPage from "./components/SongPage"
-import UploadFormPage from "./components/UploadFormPage"
-import EditSongForm from "./components/EditSongForm"
-import Navigation from "./components/Navigation"
+import Navigation from "./components/Navigation";
+import Splash from "./components/Splash";
+import Discover from "./components/Discover";
+import SongPage from "./components/SongPage";
+import UploadForm from "./components/UploadForm";
+import UserProfile from "./components/UserProfile"
 
-
-/*************************************************************************************************/
+import { getAllSongs } from "./store/songs";
 
 function App() {
-
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  useEffect(() => {
+    dispatch(getAllSongs());
+    dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+  }, [dispatch]);
 
-  useEffect(()=> {
-    dispatch(sessionActions.restoreUser()).then(()=> setIsLoaded(true))
-  },[dispatch]);
+  const songs = useSelector((state) => state.songsRed.songs);
+  // console.log(songs);
 
   return (
-    <>
+    <div id="container">
       {isLoaded && (
         <Switch>
-          <Route path="/login">
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route path="/profile">
-            <ProfilePage />
+          <Route exact path="/">
+            <Splash isLoaded={isLoaded} />
           </Route>
           <Route path="/discover">
-            <DiscoverPage isLoaded={isLoaded} />
+            <Discover isLoaded={isLoaded} />
           </Route>
-          <Route path="/" exact>
-            <SplashPage />
-          </Route>
-          <Route path='/songs/:songId'>
+          <Route path="/songs/:songId">
             <SongPage isLoaded={isLoaded} />
           </Route>
           <Route path="/upload">
             <Navigation isLoaded={isLoaded} />
-            <UploadFormPage />
+            <UploadForm />
           </Route>
-          <Route path="/songs/:songId/edit">
-            <Navigation isLoaded={isLoaded} />
-            <EditSongForm />
+          <Route to="profile">
+            <UserProfile />
+          </Route>
+          <Route>
+            <Redirect to="/" />
           </Route>
         </Switch>
       )}
-    </>
+    </div>
   );
 }
-
-/*************************************************************************************************/
 
 export default App;

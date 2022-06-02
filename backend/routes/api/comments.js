@@ -1,30 +1,11 @@
-const express = require('express');
-const asyncHandler = require('express-async-handler');
-const { check } = require('express-validator');
+const router = require("express").Router();
+const { Comment, User } = require("../../db/models");
+const asyncHandler = require("express-async-handler");
 
-const { Comment, Song, User } = require('../../db/models');
-const { requireAuth } = require('../../utils/auth');
-const { handleValidationErrors } = require('../../utils/validation');
-
-const router = express.Router();
-
-/********************************************************************************************************************************/
-
-//Comments Validation
-const commentValidation = [
-    check('content')
-      .trim()
-      .exists({ checkFalsy: true })
-      .withMessage('Comment cannot be empty.')
-      .isLength({ min: 1, max: 280 })
-      .withMessage('Comment cannot be longer than 280 characters.'),
-    handleValidationErrors,
-];
-
-/********************************************************************************************************************************/
-
-
-router.get("/:songId", asyncHandler(async (req, res) => {
+// to get all comments for a certain song
+router.get(
+  "/:songId",
+  asyncHandler(async (req, res) => {
     const comments = await Comment.findAll({
       where: { songId: parseInt(req.params.songId) },
       include: [
@@ -39,13 +20,15 @@ router.get("/:songId", asyncHandler(async (req, res) => {
 );
 
 // create new comment
-router.post("/:songId", asyncHandler(async (req, res) => {
+router.post(
+  "/:songId",
+  asyncHandler(async (req, res) => {
     const songId = parseInt(req.params.songId);
-    const { content, commenterId } = req.body;
+    const { comment, userId } = req.body;
 
     await Comment.create({
-      content,
-      commenterId,
+      comment,
+      userId,
       songId,
     });
 
@@ -63,10 +46,12 @@ router.post("/:songId", asyncHandler(async (req, res) => {
   })
 );
 
-router.delete("/delete", asyncHandler(async (req, res) => {
-    const { id, songId, commenterId } = req.body;
-    const comment = await Comment.findByPk(id);
-    if (commenterId !== comment.commenterId) return;
+router.delete(
+  "/delete",
+  asyncHandler(async (req, res) => {
+    const { commentId, songId, userId } = req.body;
+    const comment = await Comment.findByPk(commentId);
+    if (userId !== comment.userId) return;
 
     await comment.destroy();
 
@@ -84,10 +69,12 @@ router.delete("/delete", asyncHandler(async (req, res) => {
   })
 );
 
-router.put( "/update", asyncHandler(async (req, res) => {
-    const { id, comment, songId, commenterId } = req.body;
-    const commentUpdate = await Comment.findByPk(id);
-    if (commenterId !== commentUpdate.cmmenterId) return;
+router.put(
+  "/update",
+  asyncHandler(async (req, res) => {
+    const { commentId, comment, songId, userId } = req.body;
+    const commentUpdate = await Comment.findByPk(commentId);
+    if (userId !== commentUpdate.userId) return;
 
     commentUpdate.comment = comment;
     await commentUpdate.save();
@@ -105,8 +92,5 @@ router.put( "/update", asyncHandler(async (req, res) => {
     return res.json({ comments });
   })
 );
-
-
-/********************************************************************************************************************************/
 
 module.exports = router;

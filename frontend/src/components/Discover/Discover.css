@@ -1,0 +1,96 @@
+#top-discover {
+  width: 1240px;
+  background-color: white;
+  margin-top: 46px;
+  display: block;
+  overflow: auto;
+  height: 100vh;
+ 
+}
+
+#discover-title {
+  position: relative;
+  display:flex;
+  justify-content: center;
+  top: 20px;
+  font-family: serif;
+}
+
+.discover-songs {
+  display: flex;
+  flex-wrap: wrap;
+  height: 515px;
+  width: 900px;
+  overflow: none;
+
+}
+
+.discover-tracks-container {
+ display: flex;
+ justify-content: center;
+  position: relative;
+  top: 50px;
+  height: 700px;
+  width: 900px;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+
+
+.discover-cover-container {
+  
+  height: 250px;
+  width: 250px;
+  padding-top: 20px;
+  margin-left: 25px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  border: 3px solid black;
+  background-color: rgb(66, 70, 126);
+  cursor: pointer;
+}
+
+.discover-cover-container:hover {
+  border: 4px solid orangered;
+  background: black;
+}
+
+.discover-cover {
+  height: 130px;
+  width: 130px;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  /* border: 1px solid #15883e; */
+}
+
+.discover-cover-title {
+  font-size: 18px;
+  text-decoration: none;
+  color: whitesmoke;
+  margin-bottom: 5px;
+}
+
+.discover-cover-artist {
+  margin-top: 10px;
+  color: whitesmoke;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+#top-discover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.audio-discover{
+  margin-top: -10px;
+  width: 220px;
+  height: 30px
+}

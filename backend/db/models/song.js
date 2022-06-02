@@ -1,38 +1,43 @@
-'use strict';
+"use strict";
 module.exports = (sequelize, DataTypes) => {
-  const Song = sequelize.define('Song', {
-    title: {
-      allowNull: false,
-      type: DataTypes.STRING(100)
+  const Song = sequelize.define(
+    "Song",
+    {
+      title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      genre: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      audioFile: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      imgUrl: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      artist: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      album: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
     },
-    audioFile: {
-      allowNull: false,
-      type: DataTypes.STRING
-    },
-    imageFile: {
-      type: DataTypes.STRING
-    },
-    artist: {
-      allowNull: false,
-      type: DataTypes.STRING(100)
-    },
-    album: {
-      allowNull: false,
-      type: DataTypes.STRING(50)
-    },
-    description: {
-      allowNull: false,
-      type: DataTypes.TEXT
-    }
-  }, {});
-  Song.associate = function(models) {
-    Song.hasMany(models.Comment, {foreignKey: 'songId'})
-    Song.hasMany(models.Like, {foreignKey: 'songId'})
-    Song.hasMany(models.Playlist, {foreignKey: 'songId'})
-    Song.belongsToMany(models.User, {through: 'Playlist',
-    as: 'users',
-    foreignKey: 'songId',
-    otherKey: 'userId'})
+    {}
+  );
+  Song.associate = function (models) {
+    // associations can be defined here
+    Song.hasMany(models.Comment, { foreignKey: "songId" });
   };
+
+  Song.getCurrentSongById = async function (id) {
+    return await Song.scope("currentSong").findByPk(id);
+  };
+
   return Song;
 };

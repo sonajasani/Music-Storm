@@ -1,11 +1,6 @@
 import { csrfFetch } from "./csrf";
 
-
-
-/********************************************************************************************************/
 const SET_COMMENTS = "comments/setComments";
-
-/********************************************************************************************************/
 
 const setComments = (comments) => {
   return {
@@ -17,69 +12,71 @@ const setComments = (comments) => {
 export const getSongComments = (songId) => async (dispatch) => {
   const response = await fetch(`/api/comments/${songId}`);
   const data = await response.json();
-  dispatch(setComments(data.content));
+  dispatch(setComments(data.comments));
 };
 
-
-export const postComment = (songId, content, commenterId) => async (dispatch) => {
+export const postComment = (songId, comment, userId) => async (dispatch) => {
   const response = await csrfFetch(`/api/comments/${songId}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      content,
-      commenterId,
+      comment,
+      userId,
     }),
   });
   const data = await response.json();
-  dispatch(setComments(data.content));
+  dispatch(setComments(data.comments));
 };
 
-
-export const deleteComment = (songId, content, commenterId) => async (dispatch) => {
+export const deleteComment = (songId, commentId, userId) => async (
+  dispatch
+) => {
   const response = await csrfFetch(`/api/comments/delete`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      commenterId,
+      commentId,
       songId,
-      content,
+      userId,
     }),
   });
   const data = await response.json();
-  dispatch(setComments(data.content));
+  dispatch(setComments(data.comments));
 };
 
-export const updateComment = (commenterId, songId, content, id) => async (dispatch) => {
+export const updateComment = (commentId, songId, comment, userId) => async (
+  dispatch
+) => {
   const response = await csrfFetch(`/api/comments/update`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      commenterId,
-      content,
+      commentId,
+      comment,
       songId,
-      id,
+      userId,
     }),
   });
   const data = await response.json();
-  dispatch(setComments(data.content));
+  dispatch(setComments(data.comments));
 };
 
 const initialState = [];
-const commentsReducer = (state = initialState, action) => {
+const commentReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case SET_COMMENTS:
-      newState = action.content;
+      newState = action.comments;
       return newState;
     default:
       return state;
   }
 };
 
-export default commentsReducer;
+export default commentReducer;

@@ -3,8 +3,6 @@ const MODAL_CLOSE_LOGIN = "loginModal/close";
 const MODAL_OPEN_SIGNUP = "signupModal/open";
 const MODAL_CLOSE_SIGNUP = "signupModal/close";
 
-/*********************************************************************************************/
-
 export const openLogin = () => {
   return {
     type: MODAL_OPEN_LOGIN,
@@ -29,9 +27,6 @@ export const closeSignup = () => {
   };
 };
 
-/*********************************************************************************************/
-
-
 const initialState = { loginShow: false, signupShow: false };
 
 const modalReducer = (state = initialState, action) => {
@@ -53,9 +48,5 @@ const modalReducer = (state = initialState, action) => {
       return state;
   }
 };
-
-
-/*********************************************************************************************/
-
 
 export default modalReducer;
