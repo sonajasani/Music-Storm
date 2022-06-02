@@ -25,10 +25,11 @@ if (!isProduction) {
 
 // helmet helps set a variety of headers to better secure your app
 app.use(
-  helmet({
-    contentSecurityPolicy: false,
+  helmet.crossOriginResourcePolicy({
+    policy: "cross-origin"
   })
 );
+
 
 // setting csrf token up and creating req.csrfToken
 app.use(
