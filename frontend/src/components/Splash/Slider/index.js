@@ -1,10 +1,21 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./Slider.css";
-import { SliderData } from "./SliderData";
 import { useSelector, useDispatch } from "react-redux";
 import { openLogin, closeLogin } from "../../../store/modal";
 import Modal from "react-modal";
 import LoginForm from "../../LoginFormModal/LoginForm";
+
+
+export const SliderData = [
+  {
+    image:
+      "https://img.mensxp.com/media/content/2018/Apr/soulful-tracks-by-arijit-singh-for-each-and-every-mood1400-1524651018.jpg",
+  },
+  {
+    image:
+      "https://i2.wp.com/www.vervemagazine.in/wp-content/uploads/2014/01/A-R-Rahman-3.jpg?ssl=1",
+  },
+]
 
 export default function Slider() {
   // const length = SliderData.length;
@@ -27,58 +38,12 @@ export default function Slider() {
     const timer = setInterval(() => {
       image1.current.classList.add("slide-add");
       image2.current.classList.add("slide-add");
-      // console.log(image1.current.classList, image2.current.classList);
-      setTimeout(() => {
-        image1.current.classList.remove("slide-add");
-        image2.current.classList.remove("slide-add");
-        const sliderCopy = slider.slice();
-        const slideImg = sliderCopy.shift();
-        sliderCopy.push(slideImg);
-        setSlider(sliderCopy);
-      }, 600);
     }, 4000);
 
     return () => clearInterval(timer);
   });
 
-  const slideChange = () => {
-    // console.log(image1.current.classList);
-    image1.current.classList.add("slide-add");
-    image2.current.classList.add("slide-add");
-    // console.log(image1.current.classList, image2.current.classList);
-    setTimeout(() => {
-      image1.current.classList.remove("slide-add");
-      image2.current.classList.remove("slide-add");
-      const sliderCopy = slider.slice();
-      // console.log("slider before push ----->", slider);
-      // console.log("sliderCopy ----->", sliderCopy);
-      const slideImg = sliderCopy.shift();
-      // console.log("img1", slideImg);
-      sliderCopy.push(slideImg);
-      setSlider(sliderCopy);
-      // console.log("images after push: ------ >", sliderCopy);
-    }, 600);
-  };
 
-  //! for left button
-  // const slideChange2 = () => {
-  //   // console.log(image1.current.classList);
-  //   image1.current.classList.add("slide-add2");
-  //   image2.current.classList.add("slide-add2");
-  //   // console.log(image1.current.classList, image2.current.classList);
-  //   setTimeout(() => {
-  //     image1.current.classList.remove("slide-add2");
-  //     image2.current.classList.remove("slide-add2");
-  //     const sliderCopy = slider.slice();
-  //     // console.log("slider before push ----->", slider);
-  //     // console.log("sliderCopy ----->", sliderCopy);
-  //     const slideImg = sliderCopy.pop();
-  //     // console.log("img1", slideImg);
-  //     sliderCopy.unshift(slideImg);
-  //     setSlider(sliderCopy);
-  //     // console.log("images after push: ------ >", sliderCopy);
-  //   }, 600);
-  // };
 
   // switched to spans to see if that was the issue with a bug where the array would reset
   useEffect(() => {
@@ -147,24 +112,10 @@ export default function Slider() {
     setSlider(imgs);
   }, []);
 
-  // const transform = `translateX(${slider * -50}%)`;
-  // style={{ transform }}
-
-  // useEffect(() => {}, [slideChange]);
 
   return (
     <div className="splash-slider-container">
       <div className="slide">{slider}</div>
-      <button
-        ref={slidebtn1}
-        className="slidbtns"
-        onClick={slideChange}
-      ></button>
-      <button
-        ref={slidebtn2}
-        className="slidbtns"
-        onClick={slideChange}
-      ></button>
     </div>
   );
 }
