@@ -15,7 +15,6 @@
 }
 
 #nav-content {
-  /* border: 5px solid red; */
   width: 1240px;
 }
 
@@ -35,15 +34,10 @@
   height: 46px;
   max-width: 184px;
   display: flex;
-  /* flex-direction: column; */
-  /* justify-content: center; */
-  /* align-items: center; */
-  /* position: fixed; */
+
   left: 15px;
-  /* padding-left: 10px; */
-  /* padding-right: 10px; */
-  /* border: 1px solid red; */
 }
+
 
 #homeBtn {
   /* width: 75px; */
@@ -197,13 +191,15 @@
   position: relative;
   background-color: transparent;
   color: dark rgb(0, 0, 0);
-  top: 40px;
+  font-weight: 600;
+  background-color: aliceblue;
+  top: 46px;
   left: 800px;
   border-radius: 5px;
   padding-right: 40px;
   width: 120px;
   padding-top: 10px;
-}
+}..
 
 .nav-search {
   height: 26px;
