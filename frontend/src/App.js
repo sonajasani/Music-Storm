@@ -8,6 +8,7 @@ import Discover from "./components/Discover";
 import SongPage from "./components/SongPage";
 import UploadForm from "./components/UploadForm";
 import UserProfile from "./components/UserProfile"
+import EditSongForm from "./components/EditSongForm";
 
 import { getAllSongs } from "./store/songs";
 
@@ -39,9 +40,13 @@ function App() {
             <Navigation isLoaded={isLoaded} />
             <UploadForm />
           </Route>
-          <Route to="profile">
-          <Navigation isLoaded={isLoaded} />
+          <Route to="/profile">
+            <Navigation isLoaded={isLoaded} />
             <UserProfile />
+          </Route>
+          <Route to="/update">
+            <Navigation isLoaded={isLoaded} />
+            <EditSongForm />
           </Route>
           <Route>
             <Redirect to="/" />
