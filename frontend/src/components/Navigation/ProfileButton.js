@@ -1,22 +1,18 @@
+// frontend/src/components/Navigation/ProfileButton.js
 import React, { useState, useEffect } from "react";
-import { useDispatch } from 'react-redux';
-import { useHistory } from "react-router-dom";
-
-import * as sessionActions from '../../store/session';
-
-/*****************************************************************************************************************************/
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect, useHistory } from "react-router-dom";
+import * as sessionActions from "../../store/session";
 
 function ProfileButton({ user }) {
-    
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const history = useHistory();
-  
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
   };
-  
+
   useEffect(() => {
     if (!showMenu) return;
 
@@ -24,8 +20,8 @@ function ProfileButton({ user }) {
       setShowMenu(false);
     };
 
-    document.addEventListener('click', closeMenu);
-  
+    document.addEventListener("click", closeMenu);
+
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
@@ -33,20 +29,23 @@ function ProfileButton({ user }) {
     e.preventDefault();
     history.push("/");
     dispatch(sessionActions.logout());
+  
   };
 
   return (
     <>
-      <button className="profilebtn" onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+      <button className="profile-btn" onClick={openMenu}>
+        <i className="fas fa-ellipsis-h"></i>
       </button>
       {showMenu && (
         <div className="drop-down-container">
           <ul className="profile-dropdown">
-            <li>{user.username}</li>
+            <li>Hello {user.username}!</li>
             <li>{user.email}</li>
             <li>
-              <button className="logoutbtn" onClick={logout}>Log Out</button>
+              <button className="logout-btn" onClick={logout}>
+                Log Out
+              </button>
             </li>
           </ul>
         </div>
@@ -54,7 +53,5 @@ function ProfileButton({ user }) {
     </>
   );
 }
-
-/*****************************************************************************************************************************/
 
 export default ProfileButton;

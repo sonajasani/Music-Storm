@@ -1,59 +1,49 @@
-const express = require('express');
-const morgan = require('morgan');
-const cors = require('cors');
-const csurf = require('csurf');
-const helmet = require('helmet');
-const cookieParser = require('cookie-parser');
+const express = require("express");
+const morgan = require("morgan");
+const cors = require("cors");
+const csurf = require("csurf");
+const helmet = require("helmet");
+const cookieParser = require("cookie-parser");
+const routes = require("./routes");
+const { ValidationError } = require("sequelize");
+const bodyParser = require("body-parser");
 
-const { environment } = require('./config');
-const isProduction = environment === 'production';
-const { ValidationError } = require('sequelize');
-const { MulterError } = require('multer');
-
-const routes = require('./routes');
+const { environment } = require("./config");
+const isProduction = environment === "production";
 
 const app = express();
 
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 app.use(cookieParser());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-
-// Security Middleware
 if (!isProduction) {
-    // enable cors only in development
-    app.use(cors());
+  // use cors only in dev
+  app.use(cors());
 }
-
 
 // helmet helps set a variety of headers to better secure your app
 app.use(
-    helmet.crossOriginResourcePolicy({ 
-      policy: "cross-origin" ,
-      crossOriginResourcePolicy: { policy: 'cross-origin' },
-      crossOriginEmbedderPolicy: false,
-    })
+  helmet({
+    contentSecurityPolicy: false,
+  })
 );
 
-
-// Set the _csrf token and create req.csrfToken method
+// setting csrf token up and creating req.csrfToken
 app.use(
-    csurf({
-      cookie: {
-        secure: isProduction,
-        sameSite: isProduction && "Lax",
-        httpOnly: true
-      }
-    })
+  csurf({
+    cookie: {
+      secure: isProduction,
+      sameSite: isProduction && "Lax",
+      httpOnly: true,
+    },
+  })
 );
 
-app.use(routes);
+app.use(routes); // connect all the routes
 
-
-//Error handling middlewares
-
-// Catch unhandled requests and forward to error handler.
+// catch unhandled requests and forward to error handler
 app.use((_req, _res, next) => {
   const err = new Error("The requested resource couldn't be found.");
   err.title = "Resource Not Found";
@@ -62,42 +52,16 @@ app.use((_req, _res, next) => {
   next(err);
 });
 
-
-// Process sequelize errors
-app.use((err, _req, _res, next) => {
-  // check if error is a Sequelize error:
-  if (err instanceof ValidationError) {
-    err.errors = err.errors.map((e) => e.message);
-    err.title = 'Validation error';
-  }
-  next(err);
-});
-
-app.use((err, _req, res, next) => {
-  if (err instanceof MulterError) {
-    if (err.code === 'LIMIT_FILE_SIZE') {
-      err.message = 'File size cannot exceed 10MB.';
-    }
-    err.title = 'File upload error';
-    err.errors = { trackFile: `${error.message}` };
-  }
-  res.status(400).send(err);
-});
-
-// Error formatter
+//err formatting
 app.use((err, _req, res, _next) => {
   res.status(err.status || 500);
   console.error(err);
   res.json({
-    title: err.title || 'Server Error',
+    title: err.title || "Server Error",
     message: err.message,
     errors: err.errors,
-    stack: isProduction ? null : err.stack
+    stack: isProduction ? null : err.stack,
   });
 });
-
-
-
-
 
 module.exports = app;

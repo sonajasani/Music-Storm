@@ -1,63 +1,81 @@
-import React, {useEffect} from "react";
-import { useParams, NavLink, useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-
-import { getOneSong } from "../../store/songs";
+import React, { useEffect } from "react";
 import Navigation from "../Navigation";
+import Comment from "../Comment";
+import CommentForm from "./CommentForm";
 import "./SongPage.css";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getCurrentSong } from "../../store/songs";
+import { getSongComments } from "../../store/comments";
+import { Redirect } from "react-router-dom";
+
+export default function SongPage({ isLoaded }) {
+  const { songId } = useParams();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCurrentSong(songId));
+    dispatch(getSongComments(songId));
+  }, [dispatch]);
+
+  const song = useSelector((state) => state.songsRed.currentSong);
+  const comments = useSelector((state) => state.comments);
+  const user = useSelector((state) => state.session.user);
 
 
-/*****************************************************************************************************************************/
-
-
-function SongPage({isLoaded}) {
-
-    const { songId } = useParams();
-    const dispatch = useDispatch();
-    const history = useHistory();
-
-    useEffect(() => {
-        dispatch(getOneSong(songId));
-    }, [dispatch]);
-
-    const songs = useSelector((state) => state.song.songs);
-
-
-    return (
+  return (
+    <div>
+      <Navigation isLoaded={isLoaded} />
+      <div id="song-page-container">
         <div>
-            <Navigation isLoaded={isLoaded}/>
-            <div className="songDetail">
-                <h2>{songs?.oneSong.title}</h2>
-                <div className="song-artist">
-                    <h3>By: {songs?.oneSong.artist}</h3>
+          <div id="song-show-page">
+            <div id="song-banner">
+              <div id="song-show-play"></div>
+
+              <div id="song-banner-info">
+                <div id="song-banner-top">
+                  <h2 id="song-banner-artist">Artist: {song?.currentSong.artist}</h2>
+                  <h3 id="song-banner-created-at"></h3>
                 </div>
-                <div className="song-description">
-                    <h3>Description: {songs?.oneSong.description}</h3>
+
+                <div id="song-banner-bottom">
+                  <h1 id="song-banner-title">Title: {song?.currentSong.title}</h1>
+                  <div id="player-container">
+                    <audio
+                      className="audio-current-song"
+                      controls
+                      controlsList="nodownload"
+                      src={song?.currentSong.audioFile}
+                    ></audio>
+                  </div>
                 </div>
-                <div classname="song-image">
-                    <img alt="" src={songs?.oneSong.imageFile}></img>
-                </div>
-                <div className="song-audio">
-                <audio
-                    className="audio-current-song"
-                    controls
-                    controlsList="nodownload"
-                    src={songs?.oneSong.audioFile}
-                ></audio>
-                </div>
-                <br/>
-                <div>
-                <button onClick={() => {
-                    history.push(`/songs/${songs?.oneSong.id}/edit`);
-                  }}
-                  >Edit</button>
-                </div>
+              </div>
+
+              <div>
+                <img id="current-song-img" src={song?.currentSong.imgUrl} />
+              </div>
             </div>
+
+            <div id="song-comments">
+              <div id="song-comments-container">
+                <CommentForm songId={songId} user={user} />
+                <div id="song-comments-index"></div>
+              </div>
+              <div id="song-desc-and-comments">
+                {comments &&
+                  comments?.map((comment) => (
+                    <Comment
+                      comment={comment}
+                      key={comment.id}
+                      user={user}
+                      songId={songId}
+                    />
+                  ))}
+              </div>
+            </div>
+          </div>
         </div>
-    )
+      </div>
+    </div>
+  );
 }
-
-
-/*****************************************************************************************************************************/
-
-export default SongPage;

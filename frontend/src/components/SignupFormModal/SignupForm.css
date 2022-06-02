@@ -1,0 +1,107 @@
+.signup-container {
+
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-size: 20px;
+  margin: 0 auto;
+  max-width: 450px;
+  width: 1000px;
+  height: 550px;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+#signup-title {
+  position: absolute;
+  top: 275px;
+  right: 775px;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+#createAccBtn {
+  background-color: orangered;
+  color: white;
+  font-weight: 600;
+  align-items: center;
+  padding-top: 5px;
+  border-radius: 5px;
+}
+
+.signup-inputs {
+  display: flex;
+  justify-content: center;
+  margin: 1%;
+  font-size: 18px;
+  width: 400px;
+  height: 40px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid rgb(218, 215, 215);
+  padding-left: 10px;
+}
+
+.signupdemoBtn {
+  font-size: 16px;
+  line-height: 18px;
+  padding: 10px 15px;
+  height: 40px;
+  width: 400px;
+  border-radius: 5px;
+  color: white;
+  position: relative;
+  bottom: 100px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.signup-button {
+  font-size: 16px;
+  line-height: 18px;
+  padding: 10px 15px;
+  height: 40px;
+  width: 400px;
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
+  background-color: orangered;
+  cursor: pointer;
+}
+.signup-button:hover {
+  background-color: rgb(25, 146, 25);
+}
+
+.signup-or {
+  margin: 1em auto;
+  position: relative;
+  text-align: center;
+  font-size: 16px;
+  position: relative;
+  right: 205px;
+  bottom: 50px;
+}
+
+.signup-form {
+  position: relative;
+  top: 80px;
+  right: 415px;
+}
+
+.form-errors {
+  color: red;
+  font-size: 14px;
+  position: relative;
+  right: 840px;
+  top: 220px;
+  min-width: 600px;
+}
+
+#demoBtn2 {
+  background-color: rgb(70, 68, 68);
+}
+
+#demoBtn2:hover {
+  background-color: black;
+  border:2px solid orangered
+}
