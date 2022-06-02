@@ -33,6 +33,8 @@ router.get(
   })
 );
 
+
+
 router.post("/upload",
   singleMulterUpload("audioFile"),
   asyncHandler(async (req, res) => {
@@ -56,14 +58,15 @@ router.post("/upload",
 );
 
 router.put(
-  "/upload",
+  "/:id",
   singleMulterUpload("audioFile"),
   asyncHandler(async (req, res) => {
     const { title, artist, genre, album, imgUrl } = req.body;
 
     const audioFile = await singlePublicFileUpload(req.file);
+    const song = await Song.findByPk(req.params.id)
 
-    const newSong = await Song.update({
+    const newSong = await song.update({
       title,
       artist,
       genre,
@@ -72,18 +75,7 @@ router.put(
       album,
     });
 
-
-    const songs = await Song.findAll({
-      where:{}
-      include: [
-        {
-          model: User,
-        },
-      ],
-      order: [["createdAt", "DESC"]],
-    });
-
-    return res.json({ songs });
+    return res.json({ newSong });
   })
 );
 
@@ -116,11 +108,11 @@ router.delete(
 router.get(
   "/:userId",
   asyncHandler(async (req, res) => {
-    const songs = await Song.findAll({
+    const userSongs = await Song.findAll({
       where: { userId: parseInt(req.params.userId) },
       order: [["createdAt", "DESC"]],
     });
-    return res.json({ songs });
+    return res.json({ userSongs });
   })
 );
 
