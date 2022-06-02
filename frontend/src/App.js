@@ -44,10 +44,6 @@ function App() {
             <Navigation isLoaded={isLoaded} />
             <UserProfile />
           </Route>
-          <Route to="/update">
-            <Navigation isLoaded={isLoaded} />
-            <EditSongForm />
-          </Route>
           <Route>
             <Redirect to="/" />
           </Route>

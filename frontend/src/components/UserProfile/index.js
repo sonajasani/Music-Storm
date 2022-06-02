@@ -17,6 +17,9 @@ function UserProfile({isLoaded}) {
 
 
     const user = useSelector((state)=> state.session.user)
+    const songs = useSelector((state) => state.songsRed.songs)
+
+    
 
     return (
         <div className='profile-page-welcome'>
@@ -27,7 +30,7 @@ function UserProfile({isLoaded}) {
                         <div
                             className="profile-cover-container"
                             onclick={() => {
-                                history.pushState(`songs/${song.id}`);
+                              
                                 window.scrollTo(0,0);
                             }}
                             key={song.id}
@@ -40,7 +43,7 @@ function UserProfile({isLoaded}) {
                             src={song.audioFile}>
                             </audio>
                         </div>
-                    );
+                    )
                 })}
             </div>
         </div>
