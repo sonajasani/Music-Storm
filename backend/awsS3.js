@@ -1,5 +1,5 @@
 const AWS = require("aws-sdk");
-const mymusicStorm = "mymusicStorm";
+const mymusicstorm =  "mymusicstorm";
 
 const multer = require("multer");
 
@@ -9,16 +9,18 @@ const s3 = new AWS.S3({ apiVersion: "2006-03-01" });
 // --------------------------- Public UPLOAD ------------------------
 
 const singlePublicFileUpload = async (file) => {
+
   const { originalname, mimetype, buffer } = await file;
   const path = require("path");
 
   const Key = new Date().getTime().toString() + path.extname(originalname);
   const uploadParams = {
-    Bucket: mymusicStorm,
+    Bucket: mymusicstorm,
     Key,
     Body: buffer,
     ACL: "public-read",
   };
+  console.log(Key, "................................................................")
   const result = await s3.upload(uploadParams).promise();
 
  
@@ -41,7 +43,7 @@ const singlePrivateFileUpload = async (file) => {
   // name of the file in your S3 bucket will be the date in ms plus the extension name
   const Key = new Date().getTime().toString() + path.extname(originalname);
   const uploadParams = {
-    Bucket: mymusicStorm,
+    Bucket: mymusicstorm,
     Key,
     Body: buffer,
   };
@@ -63,7 +65,7 @@ const retrievePrivateFile = (key) => {
   let fileUrl;
   if (key) {
     fileUrl = s3.getSignedUrl("getObject", {
-      Bucket: mymusicStorm,
+      Bucket: mymusicstorm,
       Key: key,
     });
   }
