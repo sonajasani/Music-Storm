@@ -1,0 +1,6 @@
+.profile-page-welcome{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 50px;
+}

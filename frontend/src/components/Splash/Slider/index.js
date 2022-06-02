@@ -114,16 +114,7 @@ export default function Slider() {
   return (
     <div className="splash-slider-container">
       <div className="slide">{slider}</div>
-      {/* <button
-        ref={slidebtn1}
-        className="slidbtns"
-        onClick={slideChange}
-      ></button>
-      <button
-        ref={slidebtn2}
-        className="slidbtns"
-        onClick={slideChange}
-      ></button> */}
+   
     </div>
   );
 }

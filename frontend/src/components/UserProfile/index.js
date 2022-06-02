@@ -18,9 +18,9 @@ function UserProfile() {
     
 
     return (
-        <>
+        <div className='profile-page-welcome'>
             <h1>Welcome Back</h1>
-        </>
+        </div>
     )
 }
 
