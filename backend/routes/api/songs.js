@@ -108,10 +108,13 @@ router.delete(
 router.get(
   "/:userId",
   asyncHandler(async (req, res) => {
-    const userSongs = await Song.findAll({
+    const songlist = await SongList.findAll({
       where: { userId: parseInt(req.params.userId) },
-      order: [["createdAt", "DESC"]],
     });
+    const songIds = songList.map((item) => item.songId )
+    const userSongs= await Song.findAll({
+      where: {songId: {$in: songIds} },
+     )
     return res.json({ userSongs });
   })
 );
