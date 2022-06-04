@@ -38,11 +38,38 @@ export default function Slider() {
     const timer = setInterval(() => {
       image1.current.classList.add("slide-add");
       image2.current.classList.add("slide-add");
+      setTimeout(() => {
+        image1.current.classList.remove("slide-add");
+        image2.current.classList.remove("slide-add");
+        const sliderCopy = slider.slice();
+        const slideImg = sliderCopy.shift();
+        sliderCopy.push(slideImg);
+        setSlider(sliderCopy);
+      }, 1000);
     }, 4000);
 
     return () => clearInterval(timer);
   });
 
+
+  const slideChange = () => {
+    // console.log(image1.current.classList);
+    image1.current.classList.add("slide-add");
+    image2.current.classList.add("slide-add");
+    // console.log(image1.current.classList, image2.current.classList);
+    setTimeout(() => {
+      image1.current.classList.remove("slide-add");
+      image2.current.classList.remove("slide-add");
+      const sliderCopy = slider.slice();
+      // console.log("slider before push ----->", slider);
+      // console.log("sliderCopy ----->", sliderCopy);
+      const slideImg = sliderCopy.shift();
+      // console.log("img1", slideImg);
+      sliderCopy.push(slideImg);
+      setSlider(sliderCopy);
+      // console.log("images after push: ------ >", sliderCopy);
+    }, 1000);
+  };
  
 
   useEffect(() => {
@@ -115,7 +142,16 @@ export default function Slider() {
   return (
     <div className="splash-slider-container">
       <div className="slide">{slider}</div>
-   
+      <button
+        ref={slidebtn1}
+        className="slidbtns"
+        onClick={slideChange}
+      ></button>
+      <button
+        ref={slidebtn2}
+        className="slidbtns"
+        onClick={slideChange}
+      ></button>
     </div>
   );
 }

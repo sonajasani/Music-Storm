@@ -31,14 +31,11 @@ export default function SongPage({ isLoaded }) {
         <div>
           <div id="song-show-page">
             <div id="song-banner">
-              <div id="song-show-play"></div>
-
               <div id="song-banner-info">
+              <h2 id="song-banner-album">Album: {song?.currentSong.album}</h2>
                 <div id="song-banner-top">
                   <h2 id="song-banner-artist">Artist: {song?.currentSong.artist}</h2>
-                  <h3 id="song-banner-created-at"></h3>
                 </div>
-
                 <div id="song-banner-bottom">
                   <h1 id="song-banner-title">Title: {song?.currentSong.title}</h1>
                   <div id="player-container">

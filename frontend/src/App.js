@@ -43,7 +43,7 @@ function App() {
             <UploadForm />
           </Route>
           <Route path="/profile" >
-            <Navigation isLoaded={isLoaded} />
+            {/* <Navigation isLoaded={isLoaded} /> */}
             <UserProfile />
           </Route>
           <Route path="/update/:songId" exact >

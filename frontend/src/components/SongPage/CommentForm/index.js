@@ -22,6 +22,8 @@ export default function CommentForm({ songId, user }) {
           onChange={(e) => setComment(e.target.value)}
           required
         />
+        <button type="submit" className="fas fa-comments"> 
+        </button>
       </form>
     </div>
   );

@@ -1,25 +1,18 @@
-.profile-page-welcome{
-    display: flex;
-    justify-content: center;
-    position: relative;
-    padding: 50px;
+.edit-delete-button{
+    margin-left:80px;
+    margin-bottom: 35px;
+    margin-top: -18px;
 }
 
-.songslist{
+.delete__btn{
+    font-size: 15px;
     color: black;
-    font-weight: 600;
-    font-size: 30px;
 }
 
-
-.edit{
-    color:black;
-    font-weight: 600;
-    font-size: 30px;
+.edit__btn{
+    font-size: 15px;
 }
 
-.delete{
-    color:black;
-    font-weight: 600;
-    font-size: 30px;
+#songs-list{
+    margin-top: 25px;
 }
