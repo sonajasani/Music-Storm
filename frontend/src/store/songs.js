@@ -97,18 +97,9 @@ export const getTrendingSongs = () => async (dispatch) => {
 
 export const updateSong = (song, songId, userId) => async (dispatch) => {
 
- // const { title, artist, genre, albumName, albumCover, audioFile } = song;
 
-  // const formData = new FormData();
-  // formData.append("title", title);
-  // formData.append("artist", artist);
-  // formData.append("genre", genre);
-  // formData.append("album", albumName);
-  // formData.append("imgUrl", albumCover);
-  // formData.append("audioFile", audioFile);
-
-  const res = await csrfFetch(`api/songs/${songId}`,{
-    method: "Put",
+  const res = await csrfFetch(`/api/songs/${songId}`,{
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },

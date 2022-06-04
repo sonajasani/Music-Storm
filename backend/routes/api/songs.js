@@ -68,25 +68,21 @@ router.put(
   asyncHandler(async (req, res) => {
     console.log("req.params.id", req.params.id, req.body)
 
-  //   const { title, artist, genre, album, imgUrl, userId, audioFile } = req.body;
+   const { song: {title, artist, genre, album, imgUrl, userId, audioFile } } = req.body;
+   // const audioFile = await singlePublicFileUpload(req.file);
+    const song = await Song.findByPk(req.params.id)
 
+    const newSong = await song.update({
+      title,
+      artist,
+      genre,
+      audioFile,
+      imgUrl,
+      album, 
+      userId
+    });
 
-
-    
-  //  // const audioFile = await singlePublicFileUpload(req.file);
-  //   const song = await Song.findByPk(req.params.id)
-
-  //   const newSong = await song.update({
-  //     title,
-  //     artist,
-  //     genre,
-  //     audioFile,
-  //     imgUrl,
-  //     album,
-  //     userId
-  //   });
-
-  //   return res.json({ newSong });
+    return res.json({ newSong });
   })
 );
 

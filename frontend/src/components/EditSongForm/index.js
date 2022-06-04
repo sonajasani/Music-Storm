@@ -61,16 +61,16 @@ function EditSongForm() {
 
       return (
         song?.currentSong &&
-        <div className="edit__form__c">
-          <div className="edit-form">
+        <div className="upload__form__c">
+          <div className="upload-form">
             <form onSubmit={handleSubmit}>
-              <div id="edit__title">Upload Your Songs Here</div>
+              <div id="upload__title">Update Your Songs Here</div>
               <input
                 type="text"
                 placeholder="Title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="edit__inputs"
+                className="upload__inputs"
                 required
               />
               <input
@@ -78,7 +78,7 @@ function EditSongForm() {
                 placeholder="Artist"
                 value={artist}
                 onChange={(e) => setArtist(e.target.value)}
-                className="edit__inputs"
+                className="upload__inputs"
                 required
               />
               <input
@@ -86,7 +86,7 @@ function EditSongForm() {
                 placeholder="Genre"
                 value={genre}
                 onChange={(e) => setGenre(e.target.value)}
-                className="edit__inputs"
+                className="upload__inputs"
                 required
               />
               <input
@@ -94,7 +94,7 @@ function EditSongForm() {
                 placeholder="Album Name"
                 value={albumName}
                 onChange={(e) => setAlbumName(e.target.value)}
-                className="edit__inputs"
+                className="upload__inputs"
                 required
               />
               <input
@@ -102,7 +102,7 @@ function EditSongForm() {
                 placeholder="Image URL"
                 value={albumCover}
                 onChange={(e) => setAlbumCover(e.target.value)}
-                className="edit__inputs"
+                className="upload__inputs"
                 required
               />
                <input
@@ -110,7 +110,7 @@ function EditSongForm() {
                 placeholder="Audio Url"
                 value={audioFile}
                 onChange={(e) => setAudioFile(e.target.value)}
-                className="edit__inputs"
+                className="upload__inputs"
                 required
               />
               {/* <input
@@ -121,7 +121,7 @@ function EditSongForm() {
                 id="audio__input"
                 required
               /> */}
-              <button className="editBtn" type="submit">
+              <button className="uploadBtn" type="submit">
                 Submit
               </button>
             </form>
