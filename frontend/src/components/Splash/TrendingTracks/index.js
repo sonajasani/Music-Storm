@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import "./TrendingTracks.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { openLogin } from "../../../store/modal";
 
 import { getTrendingSongs } from "../../../store/songs";
 
@@ -28,7 +29,7 @@ export default function TrendingTracks() {
               className="trending-cover-container"
               key={song.id}
               onClick={() => {
-                history.push(`/songs/${song.id}`);
+                dispatch(openLogin());
                 window.scrollTo(0, 0);
               }}
             >
