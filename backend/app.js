@@ -24,6 +24,9 @@ if (!isProduction) {
 }
 
 // helmet helps set a variety of headers to better secure your app
+
+
+
 app.use(
   helmet.crossOriginResourcePolicy({
     policy: "cross-origin"
@@ -64,5 +67,8 @@ app.use((err, _req, res, _next) => {
     stack: isProduction ? null : err.stack,
   });
 });
+
+
+
 
 module.exports = app;

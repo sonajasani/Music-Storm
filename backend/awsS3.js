@@ -14,17 +14,16 @@ const singlePublicFileUpload = async (file) => {
   const { originalname, mimetype, buffer } = await file;
   const path = require("path");
 
-  const Key = new Date().getTime().toString() // + path.extname(originalname);
+  const Key = new Date().getTime().toString() + path.extname(originalname);
   const uploadParams = {
     Bucket: mymusicstorm,
     Key,
     Body: buffer,
     // ACL: "public-read",
   };
-  console.log(Key, "................................................................")
+ 
   const result = await s3.upload(uploadParams).promise();
 
- 
   return result.Location;
 };
 

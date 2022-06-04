@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
-const { Song } = require("../../db/models");
+const { Song, SongList, User } = require("../../db/models");
 const asyncHandler = require("express-async-handler");
 const { singleMulterUpload, singlePublicFileUpload } = require("../../awsS3");
 
@@ -36,11 +36,13 @@ router.get(
 
 
 router.post("/upload",
-  singleMulterUpload("audioFile"),
+  //singleMulterUpload("audioFile"),
   asyncHandler(async (req, res) => {
-    const { title, artist, genre, album, imgUrl } = req.body;
+    const { song : {  title, artist, genre, album, imgUrl, audioFile, userId } } = req.body;
 
-    const audioFile = await singlePublicFileUpload(req.file);
+   // const audioFile = await singlePublicFileUpload(req.file);
+    // console.log(req.body,"..................................................")
+    // return 'data';
 
     const newSong = await Song.create({
       title,
@@ -49,6 +51,7 @@ router.post("/upload",
       audioFile,
       imgUrl,
       album,
+      userId
     });
 
     if (newSong) {
@@ -57,13 +60,15 @@ router.post("/upload",
   })
 );
 
+
+
 router.put(
   "/:id",
-  singleMulterUpload("audioFile"),
+  //singleMulterUpload("audioFile"),
   asyncHandler(async (req, res) => {
-    const { title, artist, genre, album, imgUrl } = req.body;
+    const { title, artist, genre, album, imgUrl, userId, audioFile } = req.body;
 
-    const audioFile = await singlePublicFileUpload(req.file);
+   // const audioFile = await singlePublicFileUpload(req.file);
     const song = await Song.findByPk(req.params.id)
 
     const newSong = await song.update({
@@ -73,6 +78,7 @@ router.put(
       audioFile,
       imgUrl,
       album,
+      userId
     });
 
     return res.json({ newSong });
@@ -91,12 +97,9 @@ router.delete(
     await song.destroy();
 
     const songs = await Song.findAll({
-      include: [
-        {
-          model: User,
-        },
-      ],
-      order: [["createdAt", "DESC"]],
+      where: {
+        userId: userId
+      }
     });
     return res.json({ songs });
   })
@@ -104,17 +107,6 @@ router.delete(
 
 
 
-//'get all songs uploaded by a particular user
-router.get(
-  "/:userId",
-  asyncHandler(async (req, res) => {
-    const userSongs = await Song.findAll({
-      where: { userId: parseInt(req.params.userId) },
-      order: [["createdAt", "DESC"]],
-    });
-    return res.json({ userSongs });
-  })
-);
 
 
 

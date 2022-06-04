@@ -5,6 +5,7 @@ const GET_TWELVE_SONGS = "songs/getTwelveSongs";
 const GET_ONE_SONG = "songs/getOneSong";
 const UPDATE_A_SONG = "songs/UPDATE_A_SONG";
 const REMOVE_SONG = "songs/REMOVE_SONG";
+const USER_SONGS = "songs/GET_USER_SONGS"
 
 const getSongs = (songs) => {
   return {
@@ -39,25 +40,32 @@ const removeSong = (songId, userId) => ({
   userId,
 });
 
-export const postSong = (song) => async (dispatch) => {
-  const { title, artist, genre, albumName, albumCover, audioFile } = song;
-  console.log(song);
-  const formData = new FormData();
-  formData.append("title", title);
-  formData.append("artist", artist);
-  formData.append("genre", genre);
-  formData.append("album", albumName);
-  formData.append("imgUrl", albumCover);
-  formData.append("audioFile", audioFile);
+const userSongs = (songs) => ({
+  type: USER_SONGS,
+  songs
+})
 
-  console.log(formData);
+
+
+export const postSong = (song) => async (dispatch) => {
+  //const { title, artist, genre, albumName, albumCover, audioFile } = song;
+  console.log(song);
+  // const formData = new FormData();
+  // formData.append("title", title);
+  // formData.append("artist", artist);
+  // formData.append("genre", genre);
+  // formData.append("album", albumName);
+  // formData.append("imgUrl", albumCover);
+  // formData.append("audioFile", audioFile);
+
+  //console.log(formData);
 
   const response = await csrfFetch(`/api/songs/upload`, {
     method: "POST",
     headers: {
-      "Content-Type": "multipart/form-data",
+      "Content-Type": "application/json",
     },
-    body: formData,
+    body: JSON.stringify({song})
   });
   const data = await response.json();
   dispatch(getAllSongs());
@@ -89,24 +97,26 @@ export const getTrendingSongs = () => async (dispatch) => {
 
 export const updateSong = (song, songId, userId) => async (dispatch) => {
 
-  const { title, artist, genre, albumName, albumCover, audioFile } = song;
+ // const { title, artist, genre, albumName, albumCover, audioFile } = song;
 
-  const formData = new FormData();
-  formData.append("title", title);
-  formData.append("artist", artist);
-  formData.append("genre", genre);
-  formData.append("album", albumName);
-  formData.append("imgUrl", albumCover);
-  formData.append("audioFile", audioFile);
+  // const formData = new FormData();
+  // formData.append("title", title);
+  // formData.append("artist", artist);
+  // formData.append("genre", genre);
+  // formData.append("album", albumName);
+  // formData.append("imgUrl", albumCover);
+  // formData.append("audioFile", audioFile);
 
   const res = await csrfFetch(`api/songs/${song.id}`,{
     method: "Put",
     headers: {
-      "Content-Type": "multipart/form-data",
+      "Content-Type": "application/json",
     },
-    body: formData,
-    songId, 
-    userId,
+    body: JSON.stringify({
+      song,
+      songId,
+      userId
+    })
   });
   const data = await res.json();
   dispatch(editSong(data));
@@ -118,25 +128,27 @@ export const updateSong = (song, songId, userId) => async (dispatch) => {
 export const deleteSong = (songId, userId) => async (dispatch) => {
   const res = csrfFetch(`/api/songs/delete` , {
     method: 'DELETE',
-    headers: { "Content-Type": "multipart/form-data"},
+    headers: { "Content-Type": "application/json"},
     body: JSON.stringify({ userId, songId })
   })
+  const data = await res.json();
+  console.log(data, ".......................................")
+  dispatch(removeSong(data));
 
-  dispatch(removeSong(songId, userId));
-  return res;
 }
 
 export const getUserSongs = (userId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/songs/${userId}`);
-  const data = await response.json();
-  dispatch(getSongs(data));
-  return response;
-}
+  const response = await csrfFetch(`/api/profile/${userId}/songs`);
+  const songs = await response.json();
+  dispatch(userSongs(songs));
+
+  return songs;
+};
 
 
 
 
-const initialState = { songs: null, trendingSongs: null, currentSong: null };
+const initialState = { songs: null, trendingSongs: null, currentSong: null, userSongs: null};
 const songsReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
@@ -153,7 +165,10 @@ const songsReducer = (state = initialState, action) => {
       newState = Object.assign({}, state, { currentSong: action.song });
       return newState;
     case REMOVE_SONG:
-      newState = Object.assign({}, state, { songs: action.songs });
+      newState = Object.assign({}, state, { currentSongs: action.song });
+      return newState;
+    case USER_SONGS:
+      newState = Object.assign({}, state, { userSongs: action.songs });
       return newState;
     default:
       return state;

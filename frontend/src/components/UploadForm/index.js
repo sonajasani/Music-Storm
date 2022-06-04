@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { postSong } from "../../store/songs";
-import { useDispatch} from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector} from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
 
 import "./UploadForm.css";
 
@@ -14,7 +14,9 @@ export default function UploadForm() {
   const [audioFile, setAudioFile] = useState(null);
   const dispatch = useDispatch();
   const history = useHistory();
-
+  
+  const user = useSelector(state => state.session.user)
+  const userId = user.id;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,9 +24,10 @@ export default function UploadForm() {
       title,
       artist,
       genre,
-      albumName,
-      albumCover,
+      album : albumName,
+      imgUrl : albumCover,
       audioFile,
+      userId,
     };
     dispatch(postSong(song));
     history.push(`/discover`);
@@ -76,13 +79,21 @@ export default function UploadForm() {
             required
           />
           <input
+            type="text"
+            placeholder="Song URL"
+            value={audioFile}
+            onChange={(e) => setAudioFile(e.target.value)}
+            className="upload__inputs"
+            required
+          />
+          {/* <input
             type="file"
             placeholder="Audio/MP3"
             onChange={(e) => setAudioFile(e.target.files[0])}
             className="upload__inputs"
             id="audio__input"
             required
-          />
+          /> */}
           <button className="uploadBtn" type="submit">
             Submit
           </button>

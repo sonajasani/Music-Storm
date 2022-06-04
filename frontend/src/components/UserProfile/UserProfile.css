@@ -4,3 +4,22 @@
     position: relative;
     padding: 50px;
 }
+
+.songslist{
+    color: black;
+    font-weight: 600;
+    font-size: 30px;
+}
+
+
+.edit{
+    color:black;
+    font-weight: 600;
+    font-size: 30px;
+}
+
+.delete{
+    color:black;
+    font-weight: 600;
+    font-size: 30px;
+}
