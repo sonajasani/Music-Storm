@@ -1,7 +1,8 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useNavigate} from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import {  useHistory, useParams, NavLink } from "react-router-dom";
+import {  useHistory, useParams } from "react-router-dom";
 import { getUserSongs, deleteSong } from "../../store/songs";
+// import history from '../../history';
 
 import './UserProfile.css'
 
@@ -10,8 +11,17 @@ function UserProfile() {
 
     const dispatch = useDispatch();
     const history = useHistory();
+//    const navigate = useNavigate();
     const user = useSelector((state)=> state.session.user)
     const userId = user.id
+
+    // const navigateUpdate = () => {
+    //     navigate('/update')
+    // }
+    const editSongById = (song, user_id) => {
+        // navigate('/update',)
+        history.push(`/update/${song.id}`)
+    }
 
     useEffect(()=> {
        dispatch(getUserSongs(userId));
@@ -20,14 +30,19 @@ function UserProfile() {
     const userSongs = useSelector((state) => state.songsRed.userSongs)
 
     console.log(userSongs)
-
+    const deleteSongById = (id, user_Id) =>{
+        dispatch(deleteSong(id, user_Id))
+        setTimeout(() => {
+            dispatch(getUserSongs(user_Id));
+        }, 1000);
+    }
     return (
         <div>
             <div  className='profile-page-welcome'>
                 <h1>Welcome Back</h1>
             </div>
             <div className="songslist">Your Songs list....</div>
-            <div classname="user-songs">
+            <div className="user-songs">
                 {userSongs?.userSongs.map((song) => {
                     return (
                         <div>
@@ -52,10 +67,12 @@ function UserProfile() {
                                 <div className="edit-delete-button">
                                     <button
                                         className="delete-button"
-                                        onClick={() => dispatch(deleteSong(song.id, user.id))}
+                                        onClick={() => deleteSongById(song.id, user.id)}
                                     >Delete
                                     </button>
-                                    <button onClick={() => history.push('/update')}>
+                                    <button 
+                                    onClick={() => editSongById(song, user.id)}
+                                    >
                                         Edit
                                     </button>
                                 </div>

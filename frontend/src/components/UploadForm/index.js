@@ -30,7 +30,7 @@ export default function UploadForm() {
       userId,
     };
     dispatch(postSong(song));
-    history.push(`/discover`);
+    history.push(`/profile`);
   };
 
   return (

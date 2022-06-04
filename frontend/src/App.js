@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Splash from "./components/Splash";
@@ -9,7 +9,7 @@ import SongPage from "./components/SongPage";
 import UploadForm from "./components/UploadForm";
 import UserProfile from "./components/UserProfile"
 import EditSongForm from "./components/EditSongForm";
-
+import history from './history';
 import { getAllSongs } from "./store/songs";
 
 function App() {
@@ -24,6 +24,8 @@ function App() {
   // console.log(songs);
 
   return (
+    <Router history={history}>
+
     <div id="container">
       {isLoaded && (
         <Switch>
@@ -40,11 +42,11 @@ function App() {
             <Navigation isLoaded={isLoaded} />
             <UploadForm />
           </Route>
-          <Route to="/profile">
+          <Route path="/profile" >
             <Navigation isLoaded={isLoaded} />
             <UserProfile />
           </Route>
-          <Route to="/update">
+          <Route path="/update/:songId" exact >
             <Navigation isLoaded={isLoaded} />
             <EditSongForm />
           </Route>
@@ -54,6 +56,7 @@ function App() {
         </Switch>
       )}
     </div>
+    </Router>
   );
 }
 

@@ -9,24 +9,40 @@ import './EditSongForm.css'
 
 
 function EditSongForm() {
-    
-    const { songId } = useParams();
-    useEffect(() => {
-        dispatch(getCurrentSong(songId));
-      }, [dispatch]);
-      
-    const song = useSelector((state) => state.songsRed.currentSong);
+    // console.log("songId", props)
+   const { songId } = useParams();
+  //  let songId = 5;
+  
+   const song = useSelector((state) => state.songsRed.currentSong);
 
-    const [title, setTitle] = useState(song.title);
-    const [artist, setArtist] = useState(song.artist);
-    const [genre, setGenre] = useState(song.genre);
-    const [albumName, setAlbumName] = useState(song.album);
-    const [albumCover, setAlbumCover] = useState(song.imgUrl);
-    const [audioFile, setAudioFile] = useState(song.audioFile);
-    const dispatch = useDispatch();
-    const history = useHistory();
+   console.log("songId", songId, song);
+   const [title, setTitle] = useState('');
+   const [artist, setArtist] = useState('');
+   const [genre, setGenre] = useState('');
+   const [albumName, setAlbumName] = useState('');
+   const [albumCover, setAlbumCover] = useState('');
+   const [audioFile, setAudioFile] = useState('');
+   const dispatch = useDispatch();
+   const history = useHistory();
+   
+   
+   useEffect(() => {
+       dispatch(getCurrentSong(songId));
+    }, [dispatch]);
 
-    
+    useEffect(()=>{
+      if(song?.currentSong){
+        setTitle(song?.currentSong?.title)
+        setArtist(song?.currentSong?.artist)
+        setGenre(song?.currentSong?.genre)
+        setAlbumName(song?.currentSong?.album)
+        setAlbumCover(song?.currentSong?.imgUrl)
+        setAudioFile(song?.currentSong?.audioFile)
+      }
+    },[song?.currentSong])
+
+    const users = useSelector(state => state.session.user)
+    const userId = users.id;
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -34,25 +50,27 @@ function EditSongForm() {
           title,
           artist,
           genre,
-          albumName,
-          albumCover,
+          album : albumName,
+          imgUrl: albumCover,
           audioFile,
+          userId,
         };
-        dispatch(updateSong(song));
+        dispatch(updateSong(song, songId, userId));
         history.push(`/profile`);
       };
 
       return (
-        <div className="upload__form__c">
-          <div className="upload-form">
+        song?.currentSong &&
+        <div className="edit__form__c">
+          <div className="edit-form">
             <form onSubmit={handleSubmit}>
-              <div id="upload__title">Upload Your Songs Here</div>
+              <div id="edit__title">Upload Your Songs Here</div>
               <input
                 type="text"
                 placeholder="Title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="upload__inputs"
+                className="edit__inputs"
                 required
               />
               <input
@@ -60,7 +78,7 @@ function EditSongForm() {
                 placeholder="Artist"
                 value={artist}
                 onChange={(e) => setArtist(e.target.value)}
-                className="upload__inputs"
+                className="edit__inputs"
                 required
               />
               <input
@@ -68,7 +86,7 @@ function EditSongForm() {
                 placeholder="Genre"
                 value={genre}
                 onChange={(e) => setGenre(e.target.value)}
-                className="upload__inputs"
+                className="edit__inputs"
                 required
               />
               <input
@@ -76,7 +94,7 @@ function EditSongForm() {
                 placeholder="Album Name"
                 value={albumName}
                 onChange={(e) => setAlbumName(e.target.value)}
-                className="upload__inputs"
+                className="edit__inputs"
                 required
               />
               <input
@@ -84,7 +102,15 @@ function EditSongForm() {
                 placeholder="Image URL"
                 value={albumCover}
                 onChange={(e) => setAlbumCover(e.target.value)}
-                className="upload__inputs"
+                className="edit__inputs"
+                required
+              />
+               <input
+                type="text"
+                placeholder="Audio Url"
+                value={audioFile}
+                onChange={(e) => setAudioFile(e.target.value)}
+                className="edit__inputs"
                 required
               />
               {/* <input
@@ -95,7 +121,7 @@ function EditSongForm() {
                 id="audio__input"
                 required
               /> */}
-              <button className="uploadBtn" type="submit">
+              <button className="editBtn" type="submit">
                 Submit
               </button>
             </form>

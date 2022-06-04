@@ -50,10 +50,10 @@ function Navigation({ isLoaded }) {
                 <i className="fas fa-search"></i>
               </button>
             </div>
-            <NavLink id="nav-upload" to="/upload">
+            <NavLink id="nav-upload" exact to="/upload">
               Upload
             </NavLink>
-            <NavLink id="nav-profile" to="/profile">
+            <NavLink id="nav-profile" exact to="/profile">
               {sessionUser?.username}
             </NavLink>
           </div>

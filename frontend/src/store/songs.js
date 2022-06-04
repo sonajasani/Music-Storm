@@ -107,7 +107,7 @@ export const updateSong = (song, songId, userId) => async (dispatch) => {
   // formData.append("imgUrl", albumCover);
   // formData.append("audioFile", audioFile);
 
-  const res = await csrfFetch(`api/songs/${song.id}`,{
+  const res = await csrfFetch(`api/songs/${songId}`,{
     method: "Put",
     headers: {
       "Content-Type": "application/json",
@@ -126,15 +126,13 @@ export const updateSong = (song, songId, userId) => async (dispatch) => {
 
 
 export const deleteSong = (songId, userId) => async (dispatch) => {
-  const res = csrfFetch(`/api/songs/delete` , {
+  const res = await csrfFetch(`/api/songs/delete` , {
     method: 'DELETE',
     headers: { "Content-Type": "application/json"},
     body: JSON.stringify({ userId, songId })
   })
   const data = await res.json();
-  console.log(data, ".......................................")
-  dispatch(removeSong(data));
-
+  dispatch(removeSong({data}));
 }
 
 export const getUserSongs = (userId) => async (dispatch) => {

@@ -66,22 +66,27 @@ router.put(
   "/:id",
   //singleMulterUpload("audioFile"),
   asyncHandler(async (req, res) => {
-    const { title, artist, genre, album, imgUrl, userId, audioFile } = req.body;
+    console.log("req.params.id", req.params.id, req.body)
 
-   // const audioFile = await singlePublicFileUpload(req.file);
-    const song = await Song.findByPk(req.params.id)
+  //   const { title, artist, genre, album, imgUrl, userId, audioFile } = req.body;
 
-    const newSong = await song.update({
-      title,
-      artist,
-      genre,
-      audioFile,
-      imgUrl,
-      album,
-      userId
-    });
 
-    return res.json({ newSong });
+
+    
+  //  // const audioFile = await singlePublicFileUpload(req.file);
+  //   const song = await Song.findByPk(req.params.id)
+
+  //   const newSong = await song.update({
+  //     title,
+  //     artist,
+  //     genre,
+  //     audioFile,
+  //     imgUrl,
+  //     album,
+  //     userId
+  //   });
+
+  //   return res.json({ newSong });
   })
 );
 
