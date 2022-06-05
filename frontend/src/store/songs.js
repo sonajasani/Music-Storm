@@ -1,5 +1,7 @@
 import { csrfFetch } from "./csrf";
 
+/*********************************************************************************************************************************/
+
 const GET_ALL_SONGS = "songs/getAllSongs";
 const GET_TWELVE_SONGS = "songs/getTwelveSongs";
 const GET_ONE_SONG = "songs/getOneSong";
@@ -7,12 +9,15 @@ const UPDATE_A_SONG = "songs/UPDATE_A_SONG";
 const REMOVE_SONG = "songs/REMOVE_SONG";
 const USER_SONGS = "songs/GET_USER_SONGS"
 
+/*********************************************************************************************************************************/
+
 const getSongs = (songs) => {
   return {
     type: GET_ALL_SONGS,
     songs,
   };
 };
+
 const getTwelveSongs = (songs) => {
   return {
     type: GET_TWELVE_SONGS,
@@ -45,20 +50,12 @@ const userSongs = (songs) => ({
   songs
 })
 
+/*********************************************************************************************************************************/
 
 
 export const postSong = (song) => async (dispatch) => {
   //const { title, artist, genre, albumName, albumCover, audioFile } = song;
   console.log(song);
-  // const formData = new FormData();
-  // formData.append("title", title);
-  // formData.append("artist", artist);
-  // formData.append("genre", genre);
-  // formData.append("album", albumName);
-  // formData.append("imgUrl", albumCover);
-  // formData.append("audioFile", audioFile);
-
-  //console.log(formData);
 
   const response = await csrfFetch(`/api/songs/upload`, {
     method: "POST",
@@ -72,12 +69,14 @@ export const postSong = (song) => async (dispatch) => {
   return data;
 };
 
+
 export const getAllSongs = () => async (dispatch) => {
   const res = await fetch("/api/songs");
   const data = await res.json();
   dispatch(getSongs(data));
   return res;
 };
+
 
 export const getCurrentSong = (id) => async (dispatch) => {
   const res = await fetch(`/api/songs/${id}`);
@@ -86,6 +85,7 @@ export const getCurrentSong = (id) => async (dispatch) => {
   return res;
 };
 
+
 export const getTrendingSongs = () => async (dispatch) => {
   const res = await fetch("/api/songs/trend");
   const data = await res.json();
@@ -93,6 +93,7 @@ export const getTrendingSongs = () => async (dispatch) => {
   dispatch(getTwelveSongs(data));
   return res;
 };
+
 
 
 export const updateSong = (song, songId, userId) => async (dispatch) => {
@@ -115,7 +116,6 @@ export const updateSong = (song, songId, userId) => async (dispatch) => {
 };
 
 
-
 export const deleteSong = (songId, userId) => async (dispatch) => {
   const res = await csrfFetch(`/api/songs/delete` , {
     method: 'DELETE',
@@ -126,6 +126,7 @@ export const deleteSong = (songId, userId) => async (dispatch) => {
   dispatch(removeSong({data}));
 }
 
+
 export const getUserSongs = (userId) => async (dispatch) => {
   const response = await csrfFetch(`/api/profile/${userId}/songs`);
   const songs = await response.json();
@@ -135,9 +136,12 @@ export const getUserSongs = (userId) => async (dispatch) => {
 };
 
 
+/*********************************************************************************************************************************/
+
 
 
 const initialState = { songs: null, trendingSongs: null, currentSong: null, userSongs: null};
+
 const songsReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
@@ -164,6 +168,7 @@ const songsReducer = (state = initialState, action) => {
   }
 };
 
+/*********************************************************************************************************************************/
 
 
 export default songsReducer;

@@ -2,10 +2,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
-// import { Modal } from "../../context/Modal";
-// import LoginForm from "../../LoginFormModal/"
+
 import * as sessionActions from "../../store/session";
 import "./SignupForm.css";
+
+/*********************************************************************************************************************************/
+
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -68,9 +70,6 @@ function SignupFormPage() {
           placeholder="Email"
           required
         />
-        {/* </label> */}
-        {/* <label>
-          Username */}
         <input
           type="text"
           value={username}
@@ -79,9 +78,6 @@ function SignupFormPage() {
           placeholder="Username"
           required
         />
-        {/* </label> */}
-        {/* <label>
-          Password */}
         <input
           type="password"
           value={password}
@@ -90,9 +86,6 @@ function SignupFormPage() {
           placeholder="Password"
           required
         />
-        {/* </label> */}
-        {/* <label>
-          Confirm Password */}
         <input
           type="password"
           value={confirmPassword}
@@ -101,7 +94,6 @@ function SignupFormPage() {
           placeholder="Confirm Password"
           required
         />
-        {/* </label> */}
         <button className="signup-button" type="submit">
           Sign Up
         </button>
@@ -114,5 +106,9 @@ function SignupFormPage() {
     </div>
   );
 }
+
+
+/*********************************************************************************************************************************/
+
 
 export default SignupFormPage;

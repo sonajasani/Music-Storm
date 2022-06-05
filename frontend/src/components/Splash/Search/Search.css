@@ -1,6 +1,5 @@
 #search-splash {
   background: #f0f0f0;
-  /* background: rgba(211, 211, 211, 0.411); */
   position: relative;
   display: flex;
   align-items: center;
@@ -18,20 +17,14 @@
 
 #search-btn {
   cursor: pointer;
-  /* background: rgba(211, 211, 211, 0.411); */
   background-color: rgb(232, 235, 208);
-  /* margin-right: 18px; */
   border: none;
   height: 45px;
   width: 50px;
   font-size: 19px;
-  /* background-color: #f0f0f0; */
   border-radius: 0 3px 3px 0;
   background: url(https://a-v2.sndcdn.com/assets/images/search-dbfe5cbb.svg)
     15px 15px no-repeat;
-  /* position: relative; */
-  /* top: 15px; */
-  /* left: 5px; */
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -40,11 +33,8 @@
 }
 
 #search-or {
-  /* top: 200px; */
-  /* right: 50px; */
   font-size: 20px;
   padding-right: 20px;
-  /* padding-bottom: 80px; */
   display: flex;
   align-items: center;
 }
@@ -52,10 +42,8 @@
 #search-btn-div {
   background-color: #f0f0f0;
   width: 50px;
-  /* border: 1px solid black; */
   position: relative;
   right: 10px;
-  /* bottom: 5px; */
   height: 45px;
 }
 
@@ -70,7 +58,6 @@
   cursor: pointer;
   background-color: orangered;
   color: white;
-  /* border-color: #ccc; */
   border: none;
   font-size: 17px;
   min-width: 164px;
@@ -90,12 +77,10 @@
 }
 
 #search-container {
-  /* width: 1280px; */
   background-color: white;
   display: flex;
   justify-content: space-between;
   max-width: 800px;
-  /* position: absolute; */
 }
 
 #search-container1 {
@@ -103,7 +88,5 @@
   flex-direction: column;
   align-items: center;
   width: 1280px;
-  /* height: 100px; */
-
   background-color: white;
 }

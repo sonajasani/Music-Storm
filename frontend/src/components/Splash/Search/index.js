@@ -1,7 +1,11 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+
 import { openLogin } from "../../../store/modal";
 import "./Search.css";
+
+/*********************************************************************************************************************************/
+
 
 export default function Search() {
   const dispatch = useDispatch();

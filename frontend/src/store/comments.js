@@ -1,6 +1,10 @@
 import { csrfFetch } from "./csrf";
 
+/*********************************************************************************************************************************/
+
 const SET_COMMENTS = "comments/setComments";
+
+/*********************************************************************************************************************************/
 
 const setComments = (comments) => {
   return {
@@ -8,6 +12,9 @@ const setComments = (comments) => {
     comments,
   };
 };
+
+/*********************************************************************************************************************************/
+
 
 export const getSongComments = (songId) => async (dispatch) => {
   const response = await fetch(`/api/comments/${songId}`);
@@ -63,6 +70,10 @@ export const updateComment = (commentId, songId, comment, userId) => async (disp
   dispatch(setComments(data.comments));
 };
 
+
+/*********************************************************************************************************************************/
+
+
 const initialState = [];
 const commentReducer = (state = initialState, action) => {
   let newState;
@@ -74,5 +85,8 @@ const commentReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+
+/*********************************************************************************************************************************/
 
 export default commentReducer;

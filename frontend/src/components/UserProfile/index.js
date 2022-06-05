@@ -1,26 +1,22 @@
-import React, {useEffect, useNavigate} from 'react';
+import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import {  useHistory, useParams } from "react-router-dom";
+import {  useHistory } from "react-router-dom";
+
 import { getUserSongs, deleteSong } from "../../store/songs";
 import Navigation from "../Navigation";
-// import history from '../../history';
-
 import './UserProfile.css'
+
+/*********************************************************************************************************************************/
 
 
 function UserProfile({isLoaded}) {
 
     const dispatch = useDispatch();
     const history = useHistory();
-//    const navigate = useNavigate();
     const user = useSelector((state)=> state.session.user)
     const userId = user.id
 
-    // const navigateUpdate = () => {
-    //     navigate('/update')
-    // }
     const editSongById = (song, user_id) => {
-        // navigate('/update',)
         history.push(`/update/${song.id}`)
     }
 
@@ -88,6 +84,7 @@ function UserProfile({isLoaded}) {
     )
 }
 
+/*********************************************************************************************************************************/
 
 
 export default UserProfile;

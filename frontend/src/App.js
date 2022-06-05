@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
+
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Splash from "./components/Splash";
@@ -12,6 +13,9 @@ import EditSongForm from "./components/EditSongForm";
 import history from './history';
 import { getAllSongs } from "./store/songs";
 
+/*********************************************************************************************************************************/
+
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -20,8 +24,8 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  const songs = useSelector((state) => state.songsRed.songs);
-  // console.log(songs);
+  //const songs = useSelector((state) => state.songsRed.songs);
+ 
 
   return (
     <Router history={history}>
@@ -59,5 +63,8 @@ function App() {
     </Router>
   );
 }
+
+
+/*********************************************************************************************************************************/
 
 export default App;

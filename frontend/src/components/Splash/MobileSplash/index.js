@@ -1,6 +1,10 @@
 import React from "react";
+
 import "./MobileSplash.css";
 import mobImg from "./mob-sc2.jpg";
+
+/*********************************************************************************************************************************/
+
 
 export default function MobileSplash() {
   return (

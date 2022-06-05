@@ -1,13 +1,17 @@
 import React, { useEffect } from "react";
-import Navigation from "../Navigation";
-import Comment from "../Comment";
-import CommentForm from "./CommentForm";
-import "./SongPage.css";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
+import Navigation from "../Navigation";
+import Comment from "../Comment";
 import { getCurrentSong } from "../../store/songs";
 import { getSongComments } from "../../store/comments";
-import { Redirect } from "react-router-dom";
+import CommentForm from "./CommentForm";
+import "./SongPage.css";
+
+
+/*********************************************************************************************************************************/
+
 
 export default function SongPage({ isLoaded }) {
   const { songId } = useParams();

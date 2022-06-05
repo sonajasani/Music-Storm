@@ -14,6 +14,10 @@ html{
   height: 100%;
 }
 
+form {
+  margin-top: 25px;
+}
+
 .upload-form {
   position: relative;
   top: 100px;
@@ -24,11 +28,11 @@ html{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgba(225,225,255, 0.4);
+  background-color: rgba(225,225,255, 0.7);
   font-size: 20px;
   margin: 0 auto;
   min-width: 450px;
-  height: 500px;
+  height: 600px;
   box-sizing: border-box;
   left: 250px;
 }
@@ -85,4 +89,11 @@ html{
 
 .uploadBtn:hover {
   background-color: darkgreen;
+}
+
+
+.errors {
+  color: rgb(138, 6, 6);
+  font-weight: 600;
+  margin-top: 25px;
 }

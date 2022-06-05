@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import "./Slider.css";
 import { useSelector, useDispatch } from "react-redux";
-import { openLogin, closeLogin } from "../../../store/modal";
 import Modal from "react-modal";
+
+import { openLogin, closeLogin } from "../../../store/modal";
 import LoginForm from "../../LoginFormModal/LoginForm";
-import { csrfFetch } from "../../../store/csrf";
+import "./Slider.css";
 
-
+/*********************************************************************************************************************************/
 
 
 export const SliderData = [
@@ -19,6 +19,9 @@ export const SliderData = [
       "https://i2.wp.com/www.vervemagazine.in/wp-content/uploads/2014/01/A-R-Rahman-3.jpg?ssl=1",
   },
 ];
+
+
+/*********************************************************************************************************************************/
 
 
 export default function Slider() {
@@ -53,21 +56,16 @@ export default function Slider() {
 
 
   const slideChange = () => {
-    // console.log(image1.current.classList);
     image1.current.classList.add("slide-add");
     image2.current.classList.add("slide-add");
-    // console.log(image1.current.classList, image2.current.classList);
+
     setTimeout(() => {
       image1.current.classList.remove("slide-add");
       image2.current.classList.remove("slide-add");
       const sliderCopy = slider.slice();
-      // console.log("slider before push ----->", slider);
-      // console.log("sliderCopy ----->", sliderCopy);
       const slideImg = sliderCopy.shift();
-      // console.log("img1", slideImg);
       sliderCopy.push(slideImg);
       setSlider(sliderCopy);
-      // console.log("images after push: ------ >", sliderCopy);
     }, 1000);
   };
  
