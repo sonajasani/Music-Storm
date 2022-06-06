@@ -35,7 +35,7 @@ function UserProfile({isLoaded}) {
     }
     return (
         <div id="top-discover">
-            <Navigation isLoaded={isLoaded} />
+            {/* <Navigation isLoaded={isLoaded} /> */}
             <h1 id="discover-title">Welcome Back {user.username}</h1>
             <h2 id = "songs-list">List of songs uploaded by you..</h2>
             <div className="discover-tracks-container">
