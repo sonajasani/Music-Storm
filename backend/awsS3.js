@@ -1,6 +1,6 @@
 const AWS = require("aws-sdk");
-
-const mymusicstorm =  "mymusicstorm"; 
+// name of your bucket here
+const mymusicstorm = "mymusicstorm";
 
 const multer = require("multer");
 
