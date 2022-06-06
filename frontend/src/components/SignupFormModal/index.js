@@ -1,11 +1,14 @@
 // frontend/src/components/LoginFormModal/index.js
 import React from "react";
-// import { Modal } from "../../context/Modal";
 import Modal from "react-modal";
-import SignupForm from "./SignupForm";
-import "./SignupForm.css";
 import { useSelector, useDispatch } from "react-redux";
+
+import SignupForm from "./SignupForm";
 import { openSignup, closeSignup } from "../../store/modal";
+import "./SignupForm.css";
+
+/*********************************************************************************************************************************/
+
 
 Modal.setAppElement(document.getElementById("root"));
 
@@ -20,8 +23,10 @@ const customStyles = {
   },
 };
 
+/*********************************************************************************************************************************/
+
+
 function SignupFormModal() {
-  // const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
 
   const signupState = useSelector((state) => state.modal.signupShow);
@@ -50,5 +55,9 @@ function SignupFormModal() {
     </>
   );
 }
+
+
+/*********************************************************************************************************************************/
+
 
 export default SignupFormModal;

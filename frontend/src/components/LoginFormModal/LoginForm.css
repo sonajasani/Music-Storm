@@ -108,7 +108,8 @@
 }
 
 .form2-errors {
-  color: red;
+  color: rgb(90, 8, 8);
+  font-weight: 600;
   font-size: 14px;
   text-decoration: none;
   position: relative;

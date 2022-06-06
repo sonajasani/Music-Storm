@@ -1,6 +1,10 @@
 import React from "react";
+
 import "./MobileSplash.css";
 import mobImg from "./mob-sc2.jpg";
+
+/*********************************************************************************************************************************/
+
 
 export default function MobileSplash() {
   return (
@@ -9,7 +13,7 @@ export default function MobileSplash() {
         <img src={mobImg} alt="mobile image" />
       </div>
       <div>
-        <h1 id="mob-title">Never stop listening</h1>
+        <h1 id="mob-title" >Never stop listening</h1>
       </div>
       <div id="mob-border"></div>
       <div>

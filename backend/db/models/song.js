@@ -1,5 +1,6 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
+  console.log("sequelize",sequelize);
   const Song = sequelize.define(
     "Song",
     {
@@ -27,12 +28,18 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      }
     },
     {}
   );
   Song.associate = function (models) {
-    // associations can be defined here
+    
     Song.hasMany(models.Comment, { foreignKey: "songId" });
+    Song.belongsTo(models.User, { foreignKey: "userId" });
+     
   };
 
   Song.getCurrentSongById = async function (id) {

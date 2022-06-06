@@ -3,11 +3,8 @@ const router = express.Router();
 
 const apiRouter = require("./api");
 
-// Initial test route
-// router.get("/hello/world", (req, res) => {
-//   res.cookie("XSRF-TOKEN", req.csrfToken());
-//   res.send("Hello World!");
-// });
+/***************************************************************************************************************************************/
+
 
 router.use("/api", apiRouter);
 
@@ -19,7 +16,6 @@ if (process.env.NODE_ENV !== "production") {
   });
 }
 
-// Static routes
 // Serve React build files in production
 if (process.env.NODE_ENV === "production") {
   const path = require("path");
@@ -50,5 +46,7 @@ if (process.env.NODE_ENV !== "production") {
     res.status(201).json({});
   });
 }
+
+/***************************************************************************************************************************************/
 
 module.exports = router;

@@ -1,26 +1,29 @@
 import React, { useState } from "react";
-import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
+
+import * as sessionActions from "../../store/session";
 import "./LoginForm.css";
-// import { closeLogin } from "../../store/modal";
+
+/*********************************************************************************************************************************/
+
 
 export default function LoginFormPage() {
+  
   const dispatch = useDispatch();
   const history = useHistory();
-  //grabbing the current user
   const sessionUser = useSelector((state) => state.session.user);
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
-  // if user exists return to home page
+
   if (sessionUser) return <Redirect to="/discover" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    // use log in function and dispatch to backend
+
     dispatch(sessionActions.login({ credential, password })).catch(
       async (res) => {
         const data = await res.json();
@@ -32,7 +35,7 @@ export default function LoginFormPage() {
 
   const demoSubmit = (e) => {
     e.preventDefault();
-    // closeLogin();
+   
     history.push("/discover");
     return dispatch(sessionActions.demoLogin());
   };
@@ -51,8 +54,6 @@ export default function LoginFormPage() {
       </div>
       <form onSubmit={handleSubmit}>
         <div>
-          {/* <label>
-            Email address or username */}
           <input
             type="text"
             value={credential}
@@ -61,11 +62,8 @@ export default function LoginFormPage() {
             className="login-inputs"
             required
           />
-          {/* </label> */}
         </div>
         <div>
-          {/* <label>
-            Password */}
           <input
             type="password"
             value={password}
@@ -74,24 +72,18 @@ export default function LoginFormPage() {
             className="login-inputs"
             required
           />
-          {/* </label> */}
         </div>
         <button className="loginFormBtns" type="submit">
           Log In
         </button>
-        {/* <button
-          className="loginFormBtns"
-          onClick={() => history.push("/signup")}
-        >
-          Register Here
-        </button> */}
       </form>
       <ul className="form2-errors">
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
       </ul>
-      {/* test for demo log in */}
     </div>
   );
 }
+
+

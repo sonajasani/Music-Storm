@@ -52,6 +52,7 @@ module.exports = (sequelize, DataTypes) => {
   User.associate = function (models) {
     // associations can be defined here
     User.hasMany(models.Comment, { foreignKey: "userId" });
+    User.hasMany(models.Song, { foreignKey: "userId" });
   };
   //returns the User object
   User.prototype.toSafeObject = function () {
@@ -91,6 +92,7 @@ module.exports = (sequelize, DataTypes) => {
     });
     return await User.scope("currentUser").findByPk(user.id);
   };
+
 
   return User;
 };

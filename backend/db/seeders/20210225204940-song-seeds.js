@@ -2,12 +2,6 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    /*
-      Add altering commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      */
     return queryInterface.bulkInsert(
       "Songs",
       [
@@ -17,7 +11,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Manali-Trance-The-Shaukeens-500-500.jpg",
           album:"The Shaukeens",
           artist:"Lil Golu, Neha Kakkar",
-          genre:"Party Song"
+          genre:"Party Song",
+          userId: 1
         },
         {
           title:"Chaar Bottle Vodka",
@@ -25,7 +20,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Chaar-Botal-Vodka-Ragini-MMS-2-500-500.jpg",
           album:"Ragini MMS 2",
           artist:"Yo Yo Honey Singh",
-          genre:"Party Song"
+          genre:"Party Song",
+          userId: 2
         },
         {
           title:"Agar Tum Saath Ho",
@@ -33,7 +29,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/album/tamasha-500-500.jpg",
           album:"Tamasha",
           artist:"Alka Yagnik, Arijit Singh",
-          genre:"Sad Song"
+          genre:"Sad Song",
+          userId: 3
         },
         {
           title:"Matargashti",
@@ -41,7 +38,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/album/tamasha-500-500.jpg",
           album:"Tamasha",
           artist:"Mohit Chauhan, A.R. Rahman",
-          genre:"Fun Song"
+          genre:"Fun Song",
+          userId: 1
         },
         {
           title:"The Breakup Song",
@@ -49,7 +47,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/The-Breakup-Song-Ae-Dil-Hai-Mushkil-500-500.jpg",
           album:"Ae Dil Hai Mushkil",
           artist:"Pritam, Arijit Singh",
-          genre:"Sad Song"
+          genre:"Sad Song",
+          userId: 2
         },
         {
           title:"Ae Dil Hai Mushkil",
@@ -57,7 +56,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Ae-Dil-Hai-Mushkil-Title-Track-Pritam-500-500.jpg",
           album:"Ae Dil Hai Mushkil",
           artist:"Pritam, Arijit Singh",
-          genre:"Sad Song"
+          genre:"Sad Song",
+          userId: 3
         },
         {
           title:"Mere Rashke Qamar",
@@ -65,7 +65,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Mere-Rashke-Qamar-Baadshaho-500-500.jpg",
           album:"Baadshaho",
           artist:"Nusrat & Rahat Fateh Ali Khan",
-          genre:"Romantic Song"
+          genre:"Romantic Song",
+          userId: 1
         },
         {
           title:"Piya More",
@@ -73,7 +74,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Piya-More-Baadshaho-500-500.jpg",
           album:"Baadshaho",
           artist:"Mika Singh, Neeti Mohan",
-          genre:"Fun Song"
+          genre:"Fun Song",
+          userId: 2
         },
         {
           title:"Yeh Fitoor Mera",
@@ -81,7 +83,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Yeh-Fitoor-Mera-Arijit-Singh-500-500.jpg",
           album:"Fitoor",
           artist:"Arijit Singh",
-          genre:"Romantic Song"
+          genre:"Romantic Song",
+          userId: 3
         },
         {
           title:"Badtameez Dil",
@@ -89,7 +92,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Badtameez-Dil-Yeh-Jawaani-Hai-Deewani-500-500.jpg",
           album:"Yeh Jawaani Hai Deewani",
           artist:"Pritam, Benny Dayal",
-          genre:"Party Song"
+          genre:"Party Song",
+          userId: 1
         },
         {
           title:"Ilahi",
@@ -97,7 +101,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Ilahi-Yeh-Jawaani-Hai-Deewani-500-500.jpg",
           album:"Yeh Jawaani Hai Deewani",
           artist:"Pritam, Arijit Singh",
-          genre:"----"
+          genre:"----",
+          userId: 2
         },
         {
           title:"Ban Ja Rani",
@@ -105,7 +110,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Ban-Ja-Rani-Tumhari-Sulu-500-500.jpg",
           album:"Tumhari Sulu",
           artist:"Guru Randhawa",
-          genre:"Fun Song"
+          genre:"Fun Song",
+          userId: 3
         },
         {
           title:"Teri Mitti",
@@ -113,7 +119,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Teri-Mitti---Female-Version-Kesari-500-500.jpg",
           album:"Kesari",
           artist:"Parineeti Chopra",
-          genre:"Patriotic Song"
+          genre:"Patriotic Song",
+          userId: 1
         },
         {
           title:"Ve Maahi",
@@ -121,7 +128,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Ve-Maahi-Kesari-500-500.jpg",
           album:"Kesari",
           artist:"Asees Kaur, Arijit Singh",
-          genre:"Romantic Song"
+          genre:"Romantic Song",
+          userId: 2
         },
         {
           title:"Moh Moh Ke Dhaage",
@@ -129,7 +137,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Moh-Moh-Ke-Dhaage-Female-Dum-Laga-Ke-Haisha-500-500.jpg",
           album:"Dum Laga Ke Haisha",
           artist:"Monali Thakur, Anu Malik",
-          genre:"Romantic Song"
+          genre:"Romantic Song",
+          userId: 3
         },
         {
           title:"Te Amo",
@@ -137,7 +146,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Te-Amo-Dum-Maaro-Dum-500-500.jpg",
           album:"Dum Maaro Dum",
           artist:"Pritam, Sunidhi Chauhan",
-          genre:"Love Song"
+          genre:"Love Song",
+          userId: 1
         },
         {
           title:"Hosanna",
@@ -145,7 +155,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Hosanna-Ekk-Deewana-Tha-500-500.jpg",
           album:"Ekk Deewana Tha",
           artist:"A.R. Rahman",
-          genre:"Love Song"
+          genre:"Love Song",
+          userId: 2
         },
         {
           title:"Dost Hai Girl I Loved You",
@@ -153,7 +164,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Dost-Hai-Girl-I-Loved-You-Ekk-Deewana-Tha-500-500.jpg",
           album:"Ekk Deewana Tha",
           artist:"A.R. Rahman",
-          genre:"----"
+          genre:"----",
+          userId: 3
         },
         {
           title:"Hale Dil",
@@ -161,7 +173,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Hale-Dil-Murder-2-500-500.jpg",
           album:"Murder 2",
           artist:"Harshit Saxena",
-          genre:"Love Song"
+          genre:"Love Song",
+          userId: 1
         },
         {
           title:"Tera Chehra",
@@ -169,7 +182,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Tera-Chehra-Sanam-Teri-Kasam-500-500.jpg",
           album:"Sanam Teri Kasam",
           artist:"Arijit Singh, Himesh Reshammiya",
-          genre:"Romantic Song"
+          genre:"Romantic Song",
+          userId: 2
         },
         {
           title:" Abhi Toh Party Shuru Hui Hai",
@@ -177,7 +191,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Abhi-Toh-Party-Shuru-Hui-Hai-Khoobsurat-500-500.jpg",
           album:"Khoobsurat",
           artist:"Badshah, Aastha",
-          genre:"Party Song"
+          genre:"Party Song",
+          userId: 3
         },
         {
           title:"Gallan Goodiyaan",
@@ -185,7 +200,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Gallan-Goodiyaan-Dil-Dhadakne-Do-500-500.jpg",
           album:"Dil Dhadakne Do",
           artist:"Yashita Sharma",
-          genre:"Party Song"
+          genre:"Party Song",
+          userId: 1
         },
         {
           title:"Dance Basanti",
@@ -193,7 +209,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Dance-Basanti-Ungli-500-500.jpg",
           album:"Ungli",
           artist:"Sachin-Jigar, Vishal Dadlani",
-          genre:"Party Song"
+          genre:"Party Song",
+          userId: 2
         },
         {
           title:"Navrai Maajhi",
@@ -201,7 +218,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Navrai-Maajhi-English-Vinglish-500-500.jpg",
           album:"English Vinglish",
           artist:"Sunidhi Chauhan",
-          genre:"Fun Song"
+          genre:"Fun Song",
+          userId: 3
         },
         {
           title:"Senorita",
@@ -209,7 +227,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Senorita-Zindagi-Na-Milegi-Dobara-500-500.jpg",
           album:" Zindagi Na Milegi Dobara",
           artist:"Shankar-Ehsaan-Loy",
-          genre:"Fun Song"
+          genre:"Fun Song",
+          userId: 1
         },
         {
           title:"Party All Night",
@@ -217,7 +236,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Party-All-Night-Boss-500-500.jpg",
           album:"Boss",
           artist:"Yo Yo Honey Singh",
-          genre:"Party Song"
+          genre:"Party Song",
+          userId: 2
         },
         {
           title:"Tum Se Hi",
@@ -225,7 +245,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Tum-Se-Hi-Jab-We-Met-500-500.jpg",
           album:"Jab We Met",
           artist:"Pritam, Mohit Chauhan",
-          genre:"Romantic Song"
+          genre:"Romantic Song",
+          userId: 3
         },
         {
           title:"Kun Faaya Kun",
@@ -233,7 +254,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Kun-Faaya-Kun-Rockstar-500-500.jpg",
           album:"Rockstar",
           artist:"A.R. Rahman, Javed Ali",
-          genre:"Prayer Kind of Song"
+          genre:"Prayer Kind of Song",
+          userId: 1
         },
         {
           title:"Nadaan Parindey",
@@ -241,7 +263,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Nadaan-Parindey-Rockstar-500-500.jpg",
           album:"Rockstar",
           artist:"A.R. Rahman, Mohit Chauhan",
-          genre:"Sad Song"
+          genre:"Sad Song",
+          userId: 2
         },
         {
           title:"Saadda Haq",
@@ -249,7 +272,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Saadda-Haq-Featuring-Orianthi-Panagaris-On-Guitars-Rockstar-500-500.jpg",
           album:"Rockstar",
           artist:"A.R. Rahman, Clinton Cerejo",
-          genre:"Angry Song"
+          genre:"Angry Song",
+          userId: 3
         },
         {
           title:"Sun Saathiya",
@@ -257,7 +281,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Sun-Saathiya-ABCD-2-500-500.jpg",
           album:"ABCD 2",
           artist:"Priya Saraiya, Divya Kumar",
-          genre:"Romantic Song"
+          genre:"Romantic Song",
+          userId: 1
         },
         {
           title:"Tera Hone Laga Hoon",
@@ -265,7 +290,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Tera-Hone-Laga-Hoon-Ajab-Prem-Ki-Ghazab-Kahani-500-500.jpg",
           album:"Ajab Prem Ki Ghazab Kahani",
           artist:"Pritam, Atif Aslam",
-          genre:"Romantic Song"
+          genre:"Romantic Song",
+          userId: 2
         },
         {
           title:"Inn Lamhon Ke Daaman Mein",
@@ -273,7 +299,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Inn-Lamhon-Ke-Daaman-Mein-Jodhaa-Akbar-500-500.jpg",
           album:"Jodhaa Akbar",
           artist:"A.R. Rahman, Sonu Nigam",
-          genre:"Love Song"
+          genre:"Love Song",
+          userId: 3
         },
         {
           title:"Khwaja Mere Khwaja",
@@ -281,7 +308,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Khwaja-Mere-Khwaja-Jodhaa-Akbar-500-500.jpg",
           album:"Jodhaa Akbar",
           artist:"A.R. Rahman",
-          genre:"Prayer kind of Song"
+          genre:"Prayer kind of Song",
+          userId: 1
         },
         {
           title:"Engine Ki Seeti",
@@ -289,7 +317,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Engine-Ki-Seeti-Khoobsurat-500-500.jpg",
           album:"Khoobsurat",
           artist:"neha Khanwalkar",
-          genre:"Fun Song"
+          genre:"Fun Song",
+          userId: 2
         },
         {
           title:"Preet",
@@ -297,7 +326,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Preet-Khoobsurat-500-500.jpg",
           album:"Khoobsurat",
           artist:"Sneha Khanwalkar, Jasleen Royal",
-          genre:"Breakup Song"
+          genre:"Breakup Song",
+          userId: 3
         },
         {
           title:"Raabta Title Track",
@@ -305,7 +335,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Raabta-(Title-Track)-Arijit-Singh-500-500.jpg",
           album:"Raabta 2017",
           artist:"Arijit Singh, Nikhita Gandhi",
-          genre:"Love Song"
+          genre:"Love Song",
+          userId: 1
         },
         {
           title:"Ik Vaari Aa Jubin Version",
@@ -313,7 +344,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Ik-Vaari-Aa-(Jubin-Version)-Raabta-500-500.jpg",
           album:"Raabta 2017",
           artist:"Jubin Nautiyal",
-          genre:"Romantic Song"
+          genre:"Romantic Song",
+          userId: 2
         },
         {
           title:"Aashiyan",
@@ -321,7 +353,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Aashiyan-Barfi-500-500.jpg",
           album:"Barfi",
           artist:"Pritam, Shreya Ghoshal",
-          genre:"----"
+          genre:"----",
+          userId: 3
         },
         {
           title:"Main Kya Karoon",
@@ -329,7 +362,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Main-Kya-Karoon-Barfi-500-500.jpg",
           album:"Barfi",
           artist:"Pritam, Nikhil Paul George",
-          genre:"Love Song"
+          genre:"Love Song",
+          userId: 1
         },
         {
           title:"Duniyaa",
@@ -337,7 +371,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Duniyaa-Luka-Chuppi-500-500.jpg",
           album:"Luka Chuppi",
           artist:"Akhil, Dhvani Bhanushali",
-          genre:"Love song"
+          genre:"Love song",
+          userId: 2
         },
         {
           title:"Bom Diggy Diggy",
@@ -345,7 +380,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Bom-Diggy-Diggy-Sonu-Ke-Titu-Ki-Sweety-500-500.jpg",
           album:"Sonu Ke Titu Ki Sweety",
           artist:"Jasmin Walia, Zack Knight",
-          genre:"Party Song"
+          genre:"Party Song",
+          userId: 3
         },
         {
           title:"Tera Yaar Hoon Main",
@@ -353,7 +389,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Tera-Yaar-Hoon-Main-Sonu-Ke-Titu-Ki-Sweety-500-500.jpg",
           album:"Sonu Ke Titu Ki Sweety",
           artist:" Arijit Singh",
-          genre:"Romantic Song"
+          genre:"Romantic Song",
+          userId: 1
         },
         {
           title:"Phir Kabhi",
@@ -361,7 +398,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Phir-Kabhi-M.S.-Dhoni---The-Untold-Story-500-500.jpg",
           album:"M.S. Dhoni",
           artist:"Arijit Singh",
-          genre:"Romantic Song"
+          genre:"Romantic Song",
+          userId: 2
         },
         {
           title:"Kaun Tujhe",
@@ -369,7 +407,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Kaun-Tujhe-M.S.-Dhoni---The-Untold-Story-500-500.jpg",
           album:"M.S. Dhoni",
           artist:"Palak Muchhal",
-          genre:"Romantic Song"
+          genre:"Romantic Song",
+          userId: 3
         },
         {
           title:"Kamariya",
@@ -377,7 +416,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Kamariya-Mitron-500-500.jpg",
           album:"Mitron",
           artist:"Lijo George, Darshan Raval",
-          genre:"Garba Song"
+          genre:"Garba Song",
+          userId: 1
         },
         {
           title:"Nagada Sang Dhol",
@@ -385,7 +425,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Nagada-Sang-Dhol-Goliyon-Ki-Raasleela-Ram-Leela-500-500.jpg",
           album:"Goliyon Ki Raasleela Ram-Leela",
           artist:"Shreya Ghoshal, Osman Mir",
-          genre:"Garba Song"
+          genre:"Garba Song",
+          userId: 2
         },
         {
           title:"Lahu Munh Lag Gaya",
@@ -393,7 +434,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Lahu-Munh-Lag-Gaya-Goliyon-Ki-Raasleela-Ram-Leela-500-500.jpg",
           album:"Goliyon Ki Raasleela Ram-Leela",
           artist:"Shail Hada",
-          genre:"Garba Song"
+          genre:"Garba Song",
+          userId: 3
         },
         {
           title:"Ram Chahe Leela",
@@ -401,7 +443,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Ram-Chahe-Leela-Goliyon-Ki-Raasleela-Ram-Leela-500-500.jpg",
           album:"Goliyon Ki Raasleela Ram-Leela",
           artist:"Bhoomi Trivedi",
-          genre:"Fun Song"
+          genre:"Fun Song",
+          userId: 1
         },
         {
           title:"Malhari",
@@ -409,7 +452,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Malhari-Bajirao-Mastani-500-500.jpg",
           album:"Bajirao Mastani",
           artist:"Vishal Dadlani",
-          genre:"Party Song"
+          genre:"Party Song",
+          userId: 2
         },
         {
           title:"Pinga",
@@ -417,7 +461,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Pinga-Bajirao-Mastani-500-500.jpg",
           album:"Bajirao Mastani",
           artist:"Shreya Ghoshal",
-          genre:"Traditional Song"
+          genre:"Traditional Song",
+          userId: 3
         },
         {
           title:"Ek Dil Ek Jaan",
@@ -425,7 +470,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Ek-Dil-Ek-Jaan-Padmaavat-500-500.jpg",
           album:"Padmaavat",
           artist:"Shivam Pathak",
-          genre:"Love Song"
+          genre:"Love Song",
+          userId: 1
         },
         {
           title:"Khalibali",
@@ -433,7 +479,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Khalibali-Padmaavat-500-500.jpg",
           album:"Padmaavat",
           artist:"Shivam Pathak, Shail Hada",
-          genre:"Party Song"
+          genre:"Party Song",
+          userId: 2
         },
         {
           title:"Doobey",
@@ -441,7 +488,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/doobey-gehraiyaan-500-500.jpg",
           album:"Gehraiyaan",
           artist:"Lothika",
-          genre:"----"
+          genre:"----",
+          userId: 3
         },
         {
           title:"Raanjhanaa",
@@ -449,7 +497,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Raanjhanaa-A.R.-Rahman-500-500.jpg",
           album:"Raanjhanaa",
           artist:"A.R. Rahman",
-          genre:"Love Song"
+          genre:"Love Song",
+          userId: 1
         },
         {
           title:"Tum Tak",
@@ -457,7 +506,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Tum-Tak-Raanjhanaa-500-500.jpg",
           album:"Raanjhanaa",
           artist:"A.R. Rahman",
-          genre:"Love Song"
+          genre:"Love Song",
+          userId: 2
         },
         {
           title:"Dil Ibaadat",
@@ -465,7 +515,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Dil-Ibaadat-Tum-Mile-Original-Motion-Picture-Soundtrack-500-500.jpg",
           album:"Tum Mile 2009",
           artist:"Pritam, KK",
-          genre:"Romantic Song"
+          genre:"Romantic Song",
+          userId: 3
         },
         {
           title:"Tu Hi Haqeeqat",
@@ -473,7 +524,8 @@ module.exports = {
           imgUrl:"https://pagalnew.com/coverimages/Tu-Hi-Haqeeqat-Tum-Mile-Original-Motion-Picture-Soundtrack-500-500.jpg",
           album:"Tum Mile 2009",
           artist:"Pritam, Javed Ali",
-          genre:"Romantic Song"
+          genre:"Romantic Song",
+          userId: 1
         },
       ],
       {}
@@ -481,12 +533,7 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      */
+  
     return queryInterface.bulkDelete("Songs", null, {});
   },
 };

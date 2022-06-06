@@ -1,13 +1,17 @@
 import React, { useEffect } from "react";
-import Navigation from "../Navigation";
-import Comment from "../Comment";
-import CommentForm from "./CommentForm";
-import "./SongPage.css";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
+import Navigation from "../Navigation";
+import Comment from "../Comment";
 import { getCurrentSong } from "../../store/songs";
 import { getSongComments } from "../../store/comments";
-import { Redirect } from "react-router-dom";
+import CommentForm from "./CommentForm";
+import "./SongPage.css";
+
+
+/*********************************************************************************************************************************/
+
 
 export default function SongPage({ isLoaded }) {
   const { songId } = useParams();
@@ -23,6 +27,7 @@ export default function SongPage({ isLoaded }) {
   const user = useSelector((state) => state.session.user);
 
 
+
   return (
     <div>
       <Navigation isLoaded={isLoaded} />
@@ -30,14 +35,11 @@ export default function SongPage({ isLoaded }) {
         <div>
           <div id="song-show-page">
             <div id="song-banner">
-              <div id="song-show-play"></div>
-
               <div id="song-banner-info">
+              <h2 id="song-banner-album">Album: {song?.currentSong.album}</h2>
                 <div id="song-banner-top">
                   <h2 id="song-banner-artist">Artist: {song?.currentSong.artist}</h2>
-                  <h3 id="song-banner-created-at"></h3>
                 </div>
-
                 <div id="song-banner-bottom">
                   <h1 id="song-banner-title">Title: {song?.currentSong.title}</h1>
                   <div id="player-container">

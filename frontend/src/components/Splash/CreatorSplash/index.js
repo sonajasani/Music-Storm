@@ -1,6 +1,10 @@
 import React from "react";
+
 import "./CreatorSplash.css";
 import creatorPic from "./creators-page.jpg";
+
+/*********************************************************************************************************************************/
+
 
 export default function CreatorSplash() {
   return (

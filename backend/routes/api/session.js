@@ -1,12 +1,14 @@
 const router = require("express").Router();
 const { check } = require("express-validator");
-const { handleValidationErrors } = require("../../utils/validation");
-
-const { setTokenCookie, restoreUser } = require("../../utils/auth");
-const { User } = require("../../db/models");
 const asyncHandler = require("express-async-handler");
 
-//log in middleware
+const { handleValidationErrors } = require("../../utils/validation");
+const { setTokenCookie, restoreUser } = require("../../utils/auth");
+const { User } = require("../../db/models");
+
+/***************************************************************************************************************************************/
+
+//log in validation error
 const validateLogin = [
   check("credential")
     .exists({ checkFalsy: true })
@@ -18,11 +20,11 @@ const validateLogin = [
   handleValidationErrors,
 ];
 
-// Log in
-router.post(
-  "/",
-  validateLogin,
-  asyncHandler(async (req, res, next) => {
+
+/***************************************************************************************************************************************/
+
+//Log in
+router.post("/", validateLogin, asyncHandler(async (req, res, next) => {
     const { credential, password } = req.body;
 
     const user = await User.login({ credential, password });
@@ -41,11 +43,14 @@ router.post(
   })
 );
 
-// log out user
+
+//log out user
 router.delete("/", (_req, res) => {
   res.clearCookie("token");
   return res.json({ message: "success" });
 });
+
+
 
 // Restore session user
 router.get("/", restoreUser, (req, res) => {
@@ -56,5 +61,9 @@ router.get("/", restoreUser, (req, res) => {
     });
   } else return res.json({});
 });
+
+
+/***************************************************************************************************************************************/
+
 
 module.exports = router;

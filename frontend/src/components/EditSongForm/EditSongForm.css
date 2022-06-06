@@ -1,0 +1,6 @@
+.edit-here-msg{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 50px;
+}

@@ -2,14 +2,18 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+
 import ProfileButton from "./ProfileButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
-
 import "./Navigation.css";
 import logo from "./logo.png";
 
+/*********************************************************************************************************************************/
+
+
 function Navigation({ isLoaded }) {
+
   const sessionUser = useSelector((state) => state.session.user);
 
   let sessionLinks;
@@ -50,10 +54,10 @@ function Navigation({ isLoaded }) {
                 <i className="fas fa-search"></i>
               </button>
             </div>
-            <NavLink id="nav-upload" to="/upload">
+            <NavLink id="nav-upload" exact to="/upload">
               Upload
             </NavLink>
-            <NavLink id="nav-profile" to="/profile">
+            <NavLink id="nav-profile" exact to="/profile">
               {sessionUser?.username}
             </NavLink>
           </div>
@@ -63,5 +67,9 @@ function Navigation({ isLoaded }) {
     </div>
   );
 }
+
+
+/*********************************************************************************************************************************/
+
 
 export default Navigation;
