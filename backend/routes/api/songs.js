@@ -66,7 +66,7 @@ router.get("/:id", asyncHandler(async (req, res) => {
 
 
 //create new song
-router.post("/upload", validateSongUpload, asyncHandler(async (req, res) => {
+router.post("/upload", asyncHandler(async (req, res) => {
     const { song : {  title, artist, genre, album, imgUrl, audioFile, userId } } = req.body;
 
 

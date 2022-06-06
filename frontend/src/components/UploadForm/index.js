@@ -31,7 +31,7 @@ export default function UploadForm() {
     else if(artist.length > 50)  err.push('Artist name must not be more than 50 characters')
     
     if(!(genre.length)) err.push('Please provide Genre')
-    else if(genre.length > 50)  err.push('Genre must not be more than 20 characters')
+    else if(genre.length > 20)  err.push('Genre must not be more than 20 characters')
 
     if(!(albumName.length)) err.push('Please provide Album Name')
     else if(albumName.length > 50)  err.push('Album Name must not be more than 50 characters')
@@ -56,7 +56,7 @@ export default function UploadForm() {
       userId,
     };
     dispatch(postSong(song));
-    if (errors.length) return alert(`Cannot Submit`);
+    if (errors.length>0) return alert(`Cannot Submit`);
     else history.push(`/profile`);
   };
 

@@ -40,9 +40,9 @@ function UserProfile({isLoaded}) {
             <h2 id = "songs-list">List of songs uploaded by you..</h2>
             <div className="discover-tracks-container">
                 <div className="discover-songs">
-                    {userSongs?.userSongs.map((song) => {
+                    {userSongs?.userSongs.map((song, idx) => {
                         return (
-                            <div>
+                            <div key={idx}>
                                 <div
                                     className="discover-cover-container"
                                     onClick={() => {
