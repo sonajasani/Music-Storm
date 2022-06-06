@@ -1,26 +1,27 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import SplashNavigation from "./SplashNavigation";
-import Slider from "./Slider";
-import "./Splash.css";
-import Search from "./Search";
+import Modal from "react-modal";
+import { useSelector, useDispatch } from "react-redux";
+
+import SplashFooter from "./SplashFooter";
+import CreatorSplash from "./CreatorSplash";
 import TrendingTracks from "./TrendingTracks";
 import MobileSplash from "./MobileSplash";
-import CreatorSplash from "./CreatorSplash";
-import SplashFooter from "./SplashFooter";
-
-import Modal from "react-modal";
+import Search from "./Search";
+import Slider from "./Slider";
 import SignupForm from "../SignupFormModal/SignupForm";
 import LoginForm from "../LoginFormModal/LoginForm";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  openSignup,
-  closeSignup,
-  openLogin,
-  closeLogin,
-} from "../../store/modal";
+import SplashNavigation from "./SplashNavigation";
+import {openSignup, closeSignup, openLogin, closeLogin} from "../../store/modal";
+import "./Splash.css";
+
+/*********************************************************************************************************************************/
+
 
 Modal.setAppElement(document.getElementById("root"));
+
+/*********************************************************************************************************************************/
+
 
 export default function Splash({ isLoaded }) {
   const dispatch = useDispatch();
@@ -55,7 +56,6 @@ export default function Splash({ isLoaded }) {
       <div id="bottom-splash">
         <MobileSplash />
         <CreatorSplash />
-        {/* <div id="thanks-container"> */}
         <div id="thanks-splash">
           <div id="thanks-content">
             <div>Thanks for listening. Now join in.</div>
@@ -73,7 +73,6 @@ export default function Splash({ isLoaded }) {
                 isOpen={signupState}
                 closeTimeoutMS={500}
                 onRequestClose={closeModal1}
-                // style={customStyles}
                 contentLabel="Signup Modal"
                 overlayClassName="OuterModal"
                 className="InnerModal"
@@ -94,7 +93,6 @@ export default function Splash({ isLoaded }) {
                   isOpen={loginState}
                   closeTimeoutMS={500}
                   onRequestClose={closeModal2}
-                  // style={customStyles}
                   contentLabel="Login Modal"
                   overlayClassName="OuterModal"
                   className="InnerModal"
@@ -106,7 +104,6 @@ export default function Splash({ isLoaded }) {
           </div>
         </div>
         <SplashFooter />
-        {/* </div> */}
       </div>
     </div>
   );

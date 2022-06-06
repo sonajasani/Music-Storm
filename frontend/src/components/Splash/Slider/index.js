@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import "./Slider.css";
 import { useSelector, useDispatch } from "react-redux";
-import { openLogin, closeLogin } from "../../../store/modal";
 import Modal from "react-modal";
+
+import { openLogin, closeLogin } from "../../../store/modal";
 import LoginForm from "../../LoginFormModal/LoginForm";
+import "./Slider.css";
 
-
+/*********************************************************************************************************************************/
 
 
 export const SliderData = [
@@ -18,6 +19,9 @@ export const SliderData = [
       "https://i2.wp.com/www.vervemagazine.in/wp-content/uploads/2014/01/A-R-Rahman-3.jpg?ssl=1",
   },
 ];
+
+
+/*********************************************************************************************************************************/
 
 
 export default function Slider() {
@@ -37,11 +41,33 @@ export default function Slider() {
     const timer = setInterval(() => {
       image1.current.classList.add("slide-add");
       image2.current.classList.add("slide-add");
+      setTimeout(() => {
+        image1.current.classList.remove("slide-add");
+        image2.current.classList.remove("slide-add");
+        const sliderCopy = slider.slice();
+        const slideImg = sliderCopy.shift();
+        sliderCopy.push(slideImg);
+        setSlider(sliderCopy);
+      }, 1000);
     }, 4000);
 
     return () => clearInterval(timer);
   });
 
+
+  const slideChange = () => {
+    image1.current.classList.add("slide-add");
+    image2.current.classList.add("slide-add");
+
+    setTimeout(() => {
+      image1.current.classList.remove("slide-add");
+      image2.current.classList.remove("slide-add");
+      const sliderCopy = slider.slice();
+      const slideImg = sliderCopy.shift();
+      sliderCopy.push(slideImg);
+      setSlider(sliderCopy);
+    }, 1000);
+  };
  
 
   useEffect(() => {
@@ -114,7 +140,7 @@ export default function Slider() {
   return (
     <div className="splash-slider-container">
       <div className="slide">{slider}</div>
-      {/* <button
+      <button
         ref={slidebtn1}
         className="slidbtns"
         onClick={slideChange}
@@ -123,7 +149,7 @@ export default function Slider() {
         ref={slidebtn2}
         className="slidbtns"
         onClick={slideChange}
-      ></button> */}
+      ></button>
     </div>
   );
 }

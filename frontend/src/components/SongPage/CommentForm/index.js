@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+
 import { postComment } from "../../../store/comments";
+
+/*********************************************************************************************************************************/
+
 
 export default function CommentForm({ songId, user }) {
   const dispatch = useDispatch();
@@ -22,6 +26,8 @@ export default function CommentForm({ songId, user }) {
           onChange={(e) => setComment(e.target.value)}
           required
         />
+        <button type="submit" className="fa fa comments">Comment 
+        </button>
       </form>
     </div>
   );

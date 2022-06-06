@@ -1,8 +1,11 @@
 const router = require("express").Router();
-const { Comment, User } = require("../../db/models");
 const asyncHandler = require("express-async-handler");
 
-// to get all comments for a certain song
+const { Comment, User } = require("../../db/models");
+
+/***************************************************************************************************************************************/
+
+//get all comments for a particular song
 router.get(
   "/:songId",
   asyncHandler(async (req, res) => {
@@ -19,7 +22,8 @@ router.get(
   })
 );
 
-// create new comment
+
+//create new comment
 router.post(
   "/:songId",
   asyncHandler(async (req, res) => {
@@ -46,6 +50,8 @@ router.post(
   })
 );
 
+
+//delete a coomment
 router.delete(
   "/delete",
   asyncHandler(async (req, res) => {
@@ -69,6 +75,8 @@ router.delete(
   })
 );
 
+
+//edit a comment
 router.put(
   "/update",
   asyncHandler(async (req, res) => {
@@ -92,5 +100,8 @@ router.put(
     return res.json({ comments });
   })
 );
+
+
+/***************************************************************************************************************************************/
 
 module.exports = router;

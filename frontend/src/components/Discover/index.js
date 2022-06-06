@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
-import Navigation from "../Navigation";
 import { useDispatch, useSelector } from "react-redux";
 import {  useHistory } from "react-router-dom";
 
+import Navigation from "../Navigation";
 import { getAllSongs } from "../../store/songs";
 import "./Discover.css";
+
+/*********************************************************************************************************************************/
 
 export default function Discover({ isLoaded }) {
   const dispatch = useDispatch();

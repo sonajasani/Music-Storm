@@ -1,6 +1,10 @@
 import { csrfFetch } from "./csrf";
 
+/*********************************************************************************************************************************/
+
 const SET_COMMENTS = "comments/setComments";
+
+/*********************************************************************************************************************************/
 
 const setComments = (comments) => {
   return {
@@ -8,6 +12,9 @@ const setComments = (comments) => {
     comments,
   };
 };
+
+/*********************************************************************************************************************************/
+
 
 export const getSongComments = (songId) => async (dispatch) => {
   const response = await fetch(`/api/comments/${songId}`);
@@ -30,9 +37,7 @@ export const postComment = (songId, comment, userId) => async (dispatch) => {
   dispatch(setComments(data.comments));
 };
 
-export const deleteComment = (songId, commentId, userId) => async (
-  dispatch
-) => {
+export const deleteComment = (songId, commentId, userId) => async (dispatch) => {
   const response = await csrfFetch(`/api/comments/delete`, {
     method: "DELETE",
     headers: {
@@ -48,9 +53,7 @@ export const deleteComment = (songId, commentId, userId) => async (
   dispatch(setComments(data.comments));
 };
 
-export const updateComment = (commentId, songId, comment, userId) => async (
-  dispatch
-) => {
+export const updateComment = (commentId, songId, comment, userId) => async (dispatch) => {
   const response = await csrfFetch(`/api/comments/update`, {
     method: "PUT",
     headers: {
@@ -67,6 +70,10 @@ export const updateComment = (commentId, songId, comment, userId) => async (
   dispatch(setComments(data.comments));
 };
 
+
+/*********************************************************************************************************************************/
+
+
 const initialState = [];
 const commentReducer = (state = initialState, action) => {
   let newState;
@@ -78,5 +85,8 @@ const commentReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+
+/*********************************************************************************************************************************/
 
 export default commentReducer;

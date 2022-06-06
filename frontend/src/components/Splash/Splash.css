@@ -1,41 +1,28 @@
 .slider-container {
-  /* position: fixed; */
-  top: 0px;
-  /* border: 1px solid black; */
   height: 450px;
   width: 1240px;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   box-sizing: border-box;
-  /* z-index: -1; */
-  /* background-color: red; */
-  /* background-image: url("./sliderImg2.png"); */
-  /* background-size: 900px 450px; */
   border-top: 5px solid orangered;
 }
 
 #top-splash {
   width: 1240px;
   background-color: white;
-  /* background-color: white;
-  z-index: -11; */
 }
 #bottom-splash {
   width: 1240px;
-  /* height: 145vh; */
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* margin-bottom: -500px; */
 }
 
 .splash-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* font-family: Interstate, Lucida Grande, Lucida Sans Unicode, Lucida Sans,
-    Garuda, Verdana, Tahoma, sans-serif; */
   position: absolute;
   top: 0px;
  
@@ -47,40 +34,26 @@
   justify-content: center;
   line-height: 1.7;
   margin-top: 50px;
-  /* position: fixed; */
   top: 450px;
 }
 
 .trend-tracks-container {
-  /* border: 1px solid red; */
-  /* position: fixed; */
   top: 550px;
-  /* use the height below when data */
   height: 700px;
-  /* height: 160px; */
-  /* height: 10000px; */
   width: 1200px;
   display: flex;
   justify-content: center;
   box-sizing: border-box;
-  /* overflow: scroll; */
 }
 
-/* #test {
-  position: absolute;
-  top: 5000px;
-} */
 
 #thanks-splash {
-  /* position: relative; */
   font-size: 36px;
   font-weight: 100;
   text-align: center;
   color: black;
   font-weight: 600;
-  /* border: 1px solid black; */
   position: relative;
-  /* bottom: 210px; */
   bottom: 315px;
   background-color: white;
   width: 1240px;
@@ -103,7 +76,6 @@
   cursor: pointer;
   background-color: orangered;
   color: white;
-  /* border-color: #ccc; */
   border: none;
   font-size: 18px;
   min-width: 200px;
@@ -121,15 +93,12 @@
 }
 
 #splash-login-container {
-  /* border: 1px solid black; */
   display: flex;
   justify-content: space-between;
   width: 240px;
   position: relative;
-  /* bottom: 185px; */
   top: 55px;
   left: 510px;
-  /* width: 1000px; */
 }
 
 #splash-log-txt {
@@ -186,7 +155,6 @@
   height: 100%;
   background: white;
   height: fit-content;
-  /* position: fixed; */
 }
 
 .InnerModal:focus {

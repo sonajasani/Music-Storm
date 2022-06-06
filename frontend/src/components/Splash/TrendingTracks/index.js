@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
-import "./TrendingTracks.css";
-import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
+import { openLogin } from "../../../store/modal";
 import { getTrendingSongs } from "../../../store/songs";
+import "./TrendingTracks.css";
+
+/*********************************************************************************************************************************/
+
 
 export default function TrendingTracks() {
   const dispatch = useDispatch();
@@ -14,7 +18,6 @@ export default function TrendingTracks() {
   }, [dispatch]);
 
   const trendingSongs = useSelector((state) => state.songsRed.trendingSongs);
-  // console.log(trendingSongs);
 
   return (
     <div className="tr-container">
@@ -28,7 +31,7 @@ export default function TrendingTracks() {
               className="trending-cover-container"
               key={song.id}
               onClick={() => {
-                history.push(`/songs/${song.id}`);
+                dispatch(openLogin());
                 window.scrollTo(0, 0);
               }}
             >

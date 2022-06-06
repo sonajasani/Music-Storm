@@ -1,15 +1,15 @@
 const router = require("express").Router();
 const asyncHandler = require("express-async-handler");
 const { check } = require("express-validator");
+
 const { handleValidationErrors } = require("../../utils/validation");
-const {
-  setTokenCookie,
-  requireAuth,
-  restoreUser,
-} = require("../../utils/auth");
+const {setTokenCookie, requireAuth, restoreUser} = require("../../utils/auth");
 const { User } = require("../../db/models");
 
-// validation middleware for sign up and
+
+/***************************************************************************************************************************************/
+
+//signup validation error
 const validateSignup = [
   check("email")
     .exists({ checkFalsy: true })
@@ -27,7 +27,9 @@ const validateSignup = [
   handleValidationErrors,
 ];
 
-// sign up
+/***************************************************************************************************************************************/
+
+//sign up 
 router.post(
   "",
   validateSignup,
@@ -40,5 +42,8 @@ router.post(
     return res.json({ user });
   })
 );
+
+/***************************************************************************************************************************************/
+
 
 module.exports = router;

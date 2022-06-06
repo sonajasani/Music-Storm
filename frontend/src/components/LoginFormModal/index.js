@@ -1,11 +1,13 @@
-// frontend/src/components/LoginFormModal/index.js
 import React, { useState } from "react";
-// import { Modal } from "../../context/Modal";
 import Modal from "react-modal";
-import LoginForm from "./LoginForm";
-import "./LoginForm.css";
 import { useSelector, useDispatch } from "react-redux";
+
+import "./LoginForm.css";
 import { openLogin, closeLogin } from "../../store/modal";
+import LoginForm from "./LoginForm";
+
+
+/*********************************************************************************************************************************/
 
 Modal.setAppElement(document.getElementById("root"));
 
@@ -20,9 +22,11 @@ const customStyles = {
   },
 };
 
-function LoginFormModal() {
-  // const [showModal, setShowModal] = useState(false);
 
+/*********************************************************************************************************************************/
+
+
+function LoginFormModal() {
   const dispatch = useDispatch();
 
   const loginState = useSelector((state) => state.modal.loginShow);
@@ -52,5 +56,9 @@ function LoginFormModal() {
     </>
   );
 }
+
+
+/*********************************************************************************************************************************/
+
 
 export default LoginFormModal;
