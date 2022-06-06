@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/V3RS/SoundCloud-Clone">
+  <a href="https://github.com/sonajasani/Music-Storm">
     <img src="./frontend/src/components/Navigation/logo.png" alt="Logo" width="80" height="80" style="background-color:white">
   </a>
 
@@ -7,7 +7,6 @@
 
   <p align="center">
     MusicStorm, a SoundCloud clone, is a rendition of the music streaming platform SoundCloud, that allows users to upload, edit and listen to music.
-
     <br />
     <a href="https://github.com/sonajasani/Music-Storm"><strong>Explore the docs »</strong></a>
     <br />
