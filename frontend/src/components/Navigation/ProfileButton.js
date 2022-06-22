@@ -38,7 +38,7 @@ function ProfileButton({ user }) {
   return (
     <>
       <button className="profile-btn" onClick={openMenu}>
-        <i className="fas fa-ellipsis-h"></i>
+        <i className="fa fa-user"></i>
       </button>
       {showMenu && (
         <div className="drop-down-container">
