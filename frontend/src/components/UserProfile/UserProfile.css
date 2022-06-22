@@ -7,10 +7,12 @@
 .delete__btn{
     font-size: 15px;
     color: black;
+    font-weight: 600;
 }
 
 .edit__btn{
     font-size: 15px;
+    font-weight: 600;
 }
 
 #songs-list{
