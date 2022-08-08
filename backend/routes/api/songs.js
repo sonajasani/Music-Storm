@@ -65,49 +65,49 @@ router.get("/:id", asyncHandler(async (req, res) => {
 );
 
 
-//create new song
-router.post("/upload", asyncHandler(async (req, res) => {
-    const { song : {  title, artist, genre, album, imgUrl, audioFile, userId } } = req.body;
+// //create new song
+// router.post("/upload", asyncHandler(async (req, res) => {
+//     const { song : {  title, artist, genre, album, imgUrl, audioFile, userId } } = req.body;
 
 
-    const newSong = await Song.create({
-      title,
-      artist,
-      genre,
-      audioFile,
-      imgUrl,
-      album,
-      userId
-    });
+//     const newSong = await Song.create({
+//       title,
+//       artist,
+//       genre,
+//       audioFile,
+//       imgUrl,
+//       album,
+//       userId
+//     });
 
-    if (newSong) {
-      return res.json({ newSong });
-    } else return res.json({});
-  })
-);
+//     if (newSong) {
+//       return res.json({ newSong });
+//     } else return res.json({});
+//   })
+// );
 
 
-//update new song
-router.put("/:id", asyncHandler(async (req, res) => {
-    console.log("req.params.id", req.params.id, req.body)
+// //update new song
+// router.put("/:id", asyncHandler(async (req, res) => {
+//     console.log("req.params.id", req.params.id, req.body)
 
-   const { song: {title, artist, genre, album, imgUrl, userId, audioFile } } = req.body;
+//    const { song: {title, artist, genre, album, imgUrl, userId, audioFile } } = req.body;
 
-    const song = await Song.findByPk(req.params.id)
+//     const song = await Song.findByPk(req.params.id)
 
-    const newSong = await song.update({
-      title,
-      artist,
-      genre,
-      audioFile,
-      imgUrl,
-      album, 
-      userId
-    });
+//     const newSong = await song.update({
+//       title,
+//       artist,
+//       genre,
+//       audioFile,
+//       imgUrl,
+//       album, 
+//       userId
+//     });
 
-    return res.json({ newSong });
-  })
-);
+//     return res.json({ newSong });
+//   })
+// );
 
 
 //delete a song
@@ -126,6 +126,90 @@ router.delete("/delete", asyncHandler(async (req, res) => {
     return res.json({ songs });
   })
 );
+
+
+
+
+
+router.post('/',  singleMulterUpload('audioFile'), validateSongUpload, requireAuth, asyncHandler(async (req, res) => {
+  const {artist,
+    genre,
+    album,
+    imgUrl,
+    title, 
+    } = req.body
+    const audioFile = await singlePublicFileUpload(req.file);
+    // console.log("::::::::::A", audioFile);
+
+    const newSong = await Song.create({
+      title,
+      artist,
+      genre,
+      audioFile,
+      imgUrl,
+      album,
+    });
+
+    // console.log("::::::::::N", newSong);
+
+    if (newSong) {
+      return res.json({ newSong });
+    } else return res.json({});
+  })
+)
+
+
+
+router.put('/', singleMulterUpload('audioFile'), requireAuth, asyncHandler(async (req, res) => {
+  
+  const { artist,
+    genre,
+    album,
+    imgUrl,
+    title } = req.body
+    
+    let newBusiness
+    
+    const editBusiness = await Business.findByPk(id)
+
+if(req.file){
+    photoUrl = await singlePublicFileUpload(req.file);
+    newBusiness = await editBusiness.update({
+      hours,
+      userId,
+      title,
+      description,
+      address,
+      city,
+      state,
+      zipcode,
+      phone,
+      photoUrl,
+      websiteUrl,
+      tagId
+    })
+}else {
+  newBusiness = await editBusiness.update({
+    hours,
+    userId,
+    title,
+    description,
+    address,
+    city,
+    state,
+    zipcode,
+    phone,
+    websiteUrl,
+    tagId
+})
+}
+
+  return res.json(newBusiness)
+}))
+
+
+
+
 
 
 /***************************************************************************************************************************************/

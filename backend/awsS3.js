@@ -25,7 +25,7 @@ const singlePublicFileUpload = async (file) => {
     Bucket: mymusicstorm,
     Key,
     Body: buffer,
-    // ACL: "public-read",
+    ACL: "public-read",
   };
  
   const result = await s3.upload(uploadParams).promise();
