@@ -167,44 +167,32 @@ router.put('/', singleMulterUpload('audioFile'), requireAuth, asyncHandler(async
     album,
     imgUrl,
     title } = req.body
+
+    let newSong
     
-    let newBusiness
-    
-    const editBusiness = await Business.findByPk(id)
+    const editSong = await Song.findByPk(id)
 
 if(req.file){
-    photoUrl = await singlePublicFileUpload(req.file);
-    newBusiness = await editBusiness.update({
-      hours,
-      userId,
+    newSong = await editSong.update({
       title,
-      description,
-      address,
-      city,
-      state,
-      zipcode,
-      phone,
-      photoUrl,
-      websiteUrl,
-      tagId
+      artist,
+      genre,
+      audioFile,
+      imgUrl,
+      album,
     })
 }else {
-  newBusiness = await editBusiness.update({
-    hours,
-    userId,
+  newSong = await editSong.update({
     title,
-    description,
-    address,
-    city,
-    state,
-    zipcode,
-    phone,
-    websiteUrl,
-    tagId
+      artist,
+      genre,
+      audioFile,
+      imgUrl,
+      album,
 })
 }
 
-  return res.json(newBusiness)
+  return res.json(newSong)
 }))
 
 

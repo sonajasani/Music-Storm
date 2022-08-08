@@ -28,12 +28,17 @@ if (!isProduction) {
 }
 
 
+// app.use(
+//   helmet.crossOriginResourcePolicy({
+//     policy: "cross-origin"
+//   })
+// );
+
 app.use(
-  helmet.crossOriginResourcePolicy({
-    policy: "cross-origin"
+  helmet({
+    contentSecurityPolicy: false,
   })
 );
-
 
 // setting csrf token up and creating req.csrfToken
 app.use(
