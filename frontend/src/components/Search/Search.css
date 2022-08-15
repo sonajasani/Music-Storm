@@ -1,0 +1,148 @@
+#search-results {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 100vw;
+    height: auto;
+    padding-top: 75px;
+    background: linear-gradient(#272727, #1c1c1c, #272727);
+}
+
+.search-text-color {
+    color: #999999;
+}
+
+.search-title-ctn {
+    width: 95%;
+}
+
+.search-title {
+    display: flex;
+    flex-direction: row;
+    width: 75%;
+}
+.search-string {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    direction: ltr;
+}
+
+.search-ctn {
+    width: 75%;
+    height: 100%;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 25px 0 0 25px;
+}
+
+.search-content {
+    padding: 0 60px 25px 0;
+    color: #4E4E4E;
+    transition-duration: 0.3s;
+    transition-property: background-color;
+    height: 150px;
+}
+
+.search-content:first-child {
+    padding: 25px 60px 25px 0;
+    border-top-left-radius: 25px;
+}
+
+.search-content:last-child {
+    border-bottom-left-radius: 25px;
+}
+
+.search-content:hover {
+    /* transition: 0.2 ease-in-out; */
+    background-color: lightgray;
+}
+
+.no-results-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #999999;
+}
+
+.zero-results-img > img {
+    width: 400px;
+    height: 400px;
+}
+
+.zero-results-msgs {
+    text-align: center;
+    padding-bottom: 50px;
+    width: 700px;
+}
+
+.zero-results-msgs > p {
+    word-break: break-word;
+}
+
+.right-search {
+    width: 100%;
+    height: 100%;
+}
+
+.top-right {
+    display: flex;
+    flex-direction: row;
+}
+
+.play-pause-search {
+    display: flex;
+    align-items: center;
+    padding: 5px 0 0 10px;
+}
+
+.search-pause,
+.search-play {
+    color: black;
+}
+
+.search-track-info {
+    width: 100%;
+    padding-left: 5px;
+}
+
+.search-content,
+.username-creation-ctn,
+.search-title-genre-ctn {
+    display: flex;
+    flex-direction: row;
+}
+
+.username-creation-ctn,
+.search-title-genre-ctn {
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.username-creation-ctn {
+    padding-top: 7px;
+}
+
+.search-imagePath > a > img {
+    width: 150px;
+    height: 150px;
+    transition-duration: 0.2s;
+    transition-property: opacity;
+}
+
+.search-imagePath > a > img:hover,
+.search-track-title > a:hover {
+    opacity: 40%;
+}
+
+.search-track-user,
+.search-track-createDate {
+    font-size: 10pt;
+}
+
+.search-track-title > a {
+    text-decoration: none;
+    color: black;
+    transition-duration: 0.2s;
+    transition-property: opacity;
+}

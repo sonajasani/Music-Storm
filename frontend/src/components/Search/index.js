@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useLocation } from "react-router-dom"
-import { getSearchedTracks } from "../../store/search"
+import { getSearchedSongs } from "../../store/search"
 import SearchResults from "./SearchResults"
-
+import './Search.css'
 
 const Search = () => {
     const history = useHistory()
@@ -19,7 +19,7 @@ const Search = () => {
     const songsArr = Object.values(songQueries)
 
     useEffect(() => {
-        dispatch(getSearchedTracks({keyword}))
+        dispatch(getSearchedSongs({keyword}))
     }, [dispatch, search])
 
     return (
