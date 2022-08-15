@@ -25,7 +25,7 @@ export default function SongPage({ isLoaded }) {
   const song = useSelector((state) => state.songsRed.currentSong);
   const comments = useSelector((state) => state.comments);
   const user = useSelector((state) => state.session.user);
-
+  
 
 
   return (

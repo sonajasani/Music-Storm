@@ -22,21 +22,19 @@
   height: 515px;
   width: 900px;
   overflow: none;
-
 }
 
+
 .discover-tracks-container {
- display: flex;
- justify-content: center;
+  display: flex;
+  justify-content: center;
   position: relative;
   top: 50px;
   height: 700px;
   width: 900px;
-  display: flex;
   justify-content: center;
   box-sizing: border-box;
 }
-
 
 
 .discover-cover-container {
