@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Router, Route, Switch, Redirect } from "react-router-dom";
+import { Router, Route, Switch, Redirect, useLocation } from "react-router-dom";
 
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
@@ -20,6 +20,16 @@ import { getAllSongs } from "./store/songs";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const [color, setColor] = useState('')
+
+  const path = useLocation().pathname
+
+  useEffect(() => {
+    path === '/' ? setColor('black') : setColor('#272727')
+  }, [path])
+
+  document.body.style.backgroundColor = color
+
   useEffect(() => {
     dispatch(getAllSongs());
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
@@ -29,7 +39,7 @@ function App() {
  
 
   return (
-    <Router history={history}>
+    // <Router history={history}>
 
     <div id="container">
       {isLoaded && (
@@ -37,34 +47,35 @@ function App() {
           <Route exact path="/">
             <Splash isLoaded={isLoaded} />
           </Route>
-          <Route path="/discover">
+          <Route exact path="/discover">
             <Discover isLoaded={isLoaded} />
           </Route>
-          <Route path="/songs/:songId">
+          <Route exact path="/songs/:songId">
             <SongPage isLoaded={isLoaded} />
           </Route>
-          <Route path="/upload">
+          <Route exact path="/upload">
             <Navigation isLoaded={isLoaded} />
             <UploadForm />
           </Route>
-          <Route path="/profile" >
+          <Route exact path="/profile" >
             <Navigation isLoaded={isLoaded} />
             <UserProfile />
           </Route>
-          <Route path="/update/:songId" exact >
+          <Route exact path="/update/:songId" >
             <Navigation isLoaded={isLoaded} />
             <EditSongForm />
           </Route>
           <Route>
             <Redirect to="/" />
           </Route>
-          <Route path='/search'>
+          <Route path="/search">
+            <Navigation isLoaded={isLoaded} />
             <Search />
           </Route>
         </Switch>
       )}
     </div>
-    </Router>
+    // </Router>
   );
 }
 

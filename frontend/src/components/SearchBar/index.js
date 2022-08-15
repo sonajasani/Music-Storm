@@ -24,7 +24,7 @@ const SearchBar = () => {
                     />
                 </div>
                 <button className='search-btn'>
-                    <i className="fa-solid fa-magnifying-glass fa-large"></i>
+                    <i className="fa-solid fa-magnifying-glass fa-large fa fa-search"></i>
                 </button>
             </form>
         </div>
