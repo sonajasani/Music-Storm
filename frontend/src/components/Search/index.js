@@ -16,7 +16,7 @@ const Search = () => {
     const keyword = new URLSearchParams(search).get('q')
 
     const songQueries = useSelector(state => state?.search?.entries)
-    const songsArr = Object.values(trackQueries)
+    const songsArr = Object.values(songQueries)
 
     useEffect(() => {
         dispatch(getSearchedTracks({keyword}))
@@ -31,7 +31,7 @@ const Search = () => {
             </div>
             <div className='search-ctn'>
                 {songsArr.length !== 0
-                ? (songsArr && songsArr.map(track => (
+                ? (songsArr && songsArr.map(song => (
                     <div key={song.id} className='search-content'>
                         <SearchResults song={song} />
                     </div>

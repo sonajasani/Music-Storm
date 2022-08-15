@@ -10,6 +10,7 @@ import SongPage from "./components/SongPage";
 import UploadForm from "./components/UploadForm";
 import UserProfile from "./components/UserProfile"
 import EditSongForm from "./components/EditSongForm";
+import Search from "./components/Search"
 import history from './history';
 import { getAllSongs } from "./store/songs";
 
@@ -56,6 +57,9 @@ function App() {
           </Route>
           <Route>
             <Redirect to="/" />
+          </Route>
+          <Route path='/search'>
+            <Search />
           </Route>
         </Switch>
       )}
