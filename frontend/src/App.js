@@ -20,15 +20,11 @@ import { getAllSongs } from "./store/songs";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  const [color, setColor] = useState('')
+  
 
   const path = useLocation().pathname
 
-  useEffect(() => {
-    path === '/' ? setColor('black') : setColor('#272727')
-  }, [path])
-
-  document.body.style.backgroundColor = color
+  
 
   useEffect(() => {
     dispatch(getAllSongs());
@@ -39,7 +35,7 @@ function App() {
  
 
   return (
-    // <Router history={history}>
+    <Router history={history}>
 
     <div id="container">
       {isLoaded && (
@@ -75,7 +71,7 @@ function App() {
         </Switch>
       )}
     </div>
-    // </Router>
+    </Router>
   );
 }
 
