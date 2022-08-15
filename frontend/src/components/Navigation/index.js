@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import SearchBar from '../SearchBar';
 import "./Navigation.css";
 import logo from "./logo.png";
 
@@ -49,10 +50,9 @@ function Navigation({ isLoaded }) {
               Github
             </a>
             <div className="nav-search-container">
-              <input className="nav-search" placeholder="Search"></input>
-              <button className="nav-search-btn">
-                <i className="fas fa-search"></i>
-              </button>
+              <div className='searchbar-ctn'>
+                <SearchBar />
+              </div>
             </div>
             <NavLink id="nav-upload" exact to="/upload">
               Upload
