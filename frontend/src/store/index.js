@@ -5,6 +5,7 @@ import sessionReducer from "./session";
 import modalReducer from "./modal";
 import songsReducer from "./songs";
 import commentsReducer from "./comments";
+import searchReducer from './search';
 
 /*********************************************************************************************************************************/
 
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   modal: modalReducer,
   songsRed: songsReducer,
   comments: commentsReducer,
+  search: searchReducer,
 });
 
 let enhancer;
