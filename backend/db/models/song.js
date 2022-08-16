@@ -39,6 +39,7 @@ module.exports = (sequelize, DataTypes) => {
     
     Song.hasMany(models.Comment, { foreignKey: "songId" });
     Song.belongsTo(models.User, { foreignKey: "userId" });
+    Business.hasMany(models.Like, {foreignKey:"songId", onDelete: 'cascade', hooks: 'true'})
      
   };
 
