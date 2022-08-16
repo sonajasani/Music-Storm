@@ -31,8 +31,8 @@ const SearchResults = ({song}) => {
                                 // onChange={isPlaying ? audioPlayer?.current?.play() : audioPlayer?.current?.pause()}
                             >
                                 {isPlaying
-                                ? <i className="fa-solid fa-circle-pause fa-3x search-pause"></i>
-                                : <i className="fa-solid fa-circle-play fa-3x search-play"></i>
+                                ? <i className="fa-solid fa-circle-pause fa-3x search-pause fa fa-pause"></i>
+                                : <i className="fa-solid fa-circle-play fa-3x search-play fa fa-play"></i>
                                 }
                             </button>
                         </div>
