@@ -14,8 +14,7 @@
 }
 
 .button-unliked {
-    
-    width: 165px;
+    width: 100px;
     background-color: #d32323;
     border: none;
     height: 50px;
@@ -30,6 +29,7 @@
 
 .button-unliked:hover {
     background-color: lightcoral;
+    font-size: 35px;
 }
 
 .button-liked {
@@ -49,4 +49,8 @@
 
 .button-liked:hover {
     background-color: lightcoral;
+}
+
+.likes{
+    font-size: 30px;
 }

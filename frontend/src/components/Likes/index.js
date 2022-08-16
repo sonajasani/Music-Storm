@@ -42,7 +42,7 @@ const Likes = ({ songId }) => {
 
     return (
         <div className="likes-div">
-            {sessionUser && <button onClick={() => handleLike()} className={'button-unliked'}>{!liked ? 'Like Song' : 'Unlike Song'}</button>}
+            {sessionUser && <button onClick={() => handleLike()} className={'button-unliked'}>{!liked ? <i class="fa fa-thumbs-up likes" aria-hidden="true"></i> : <i class="fa fa-thumbs-down likes" aria-hidden="true"></i>}</button>}
             <p className='likeCounter'>Likes: {totalLikes}</p>
         </div>
     )
