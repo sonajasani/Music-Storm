@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import './likes-css.css'
+import './likes.css'
 import { addLikeThunk, getLikeThunk } from '../../store/like';
 import { deleteLikeThunk } from '../../store/like';
 

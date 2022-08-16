@@ -6,6 +6,7 @@ import Navigation from "../Navigation";
 import Comment from "../Comment";
 import { getCurrentSong } from "../../store/songs";
 import { getSongComments } from "../../store/comments";
+import Likes from '../Likes'
 import CommentForm from "./CommentForm";
 import "./SongPage.css";
 
@@ -51,13 +52,15 @@ export default function SongPage({ isLoaded }) {
                     ></audio>
                   </div>
                 </div>
+                <div className="likes-div">
+                    <Likes songId={songId} />
+                </div>
               </div>
 
               <div>
                 <img id="current-song-img" src={song?.currentSong.imgUrl} />
               </div>
             </div>
-
             <div id="song-comments">
               <div id="song-comments-container">
                 <CommentForm songId={songId} user={user} />

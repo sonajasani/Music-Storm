@@ -93,10 +93,9 @@
 
 #player-container {
   display: flex;
-
   position: relative;
-  right: 500px;
   top: 240px;
+  left:-450px;
 }
 
 #song-comments {
@@ -146,9 +145,9 @@
 }
 
 
-#player-container{
+/* #player-container{
   left:-450px;
-}
+} */
 
 .audio-current-song{
   margin-top: -200px;
@@ -168,4 +167,10 @@
   font-size: 24px;
   color: grey;
   font-weight: 100;
+}
+
+
+.likes-div{
+  margin-left: 200px;
+  margin-top: 10px;
 }
