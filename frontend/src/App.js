@@ -12,7 +12,6 @@ import UserProfile from "./components/UserProfile"
 import EditSongForm from "./components/EditSongForm";
 import ErrorPage from "./components/ErrorPage"
 import Search from "./components/Search"
-import Extra from "./components/Extra";
 import history from './history';
 import { getAllSongs } from "./store/songs";
 

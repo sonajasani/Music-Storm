@@ -26,7 +26,7 @@ const Search = () => {
         <div id='search-results'>
             <div className="search-title-ctn">
                 <div className="search-title">
-                    <h1 className="search-string">Search results for "{keyword}</h1><h1>"</h1>
+                    <h1 className="search-string">Search results for "{keyword}"</h1>
                 </div>
             </div>
             <div className='search-ctn'>
