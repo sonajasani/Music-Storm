@@ -8,7 +8,6 @@ const SearchBar = () => {
     const onSubmit = async (e) => {
         e.preventDefault()
         history.push(`/search?q=${keyword}`)
-        console.log(`/search?q=${keyword}`, ".............inside search bar.............")
         setKeyword('')
     }
 

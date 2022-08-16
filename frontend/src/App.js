@@ -12,6 +12,7 @@ import UserProfile from "./components/UserProfile"
 import EditSongForm from "./components/EditSongForm";
 import ErrorPage from "./components/ErrorPage"
 import Search from "./components/Search"
+import Extra from "./components/Extra";
 import history from './history';
 import { getAllSongs } from "./store/songs";
 
@@ -47,7 +48,7 @@ function App() {
           <Route exact path="/songs/:songId">
             <SongPage isLoaded={isLoaded} />
           </Route>
-          <Route exact path="/upload">
+          <Route path="/upload">
             <Navigation isLoaded={isLoaded} />
             <UploadForm />
           </Route>
@@ -59,12 +60,12 @@ function App() {
             <Navigation isLoaded={isLoaded} />
             <EditSongForm />
           </Route>
-          <Route>
-            <ErrorPage />
-          </Route>
           <Route path="/search">
             <Navigation isLoaded={isLoaded} />
             <Search />
+          </Route>
+          <Route>
+            <ErrorPage />
           </Route>
         </Switch>
       )}
