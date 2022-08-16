@@ -23,10 +23,6 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   
 
-  const path = useLocation().pathname
-
-  
-
   useEffect(() => {
     dispatch(getAllSongs());
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
