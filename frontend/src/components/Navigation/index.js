@@ -54,6 +54,14 @@ function Navigation({ isLoaded }) {
                 <SearchBar />
               </div>
             </div>
+            <a
+              id="nav-linkedIn"
+              href="https://www.linkedin.com/in/sona-jasani-3b3540194/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn
+            </a>
             <NavLink id="nav-upload" exact to="/upload">
               Upload
             </NavLink>
