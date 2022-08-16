@@ -10,6 +10,7 @@ import SongPage from "./components/SongPage";
 import UploadForm from "./components/UploadForm";
 import UserProfile from "./components/UserProfile"
 import EditSongForm from "./components/EditSongForm";
+import ErrorPage from "./components/ErrorPage"
 import Search from "./components/Search"
 import history from './history';
 import { getAllSongs } from "./store/songs";
@@ -44,6 +45,7 @@ function App() {
             <Splash isLoaded={isLoaded} />
           </Route>
           <Route exact path="/discover">
+            {/* <Navigation isLoaded={isLoaded} /> */}
             <Discover isLoaded={isLoaded} />
           </Route>
           <Route exact path="/songs/:songId">
@@ -62,7 +64,7 @@ function App() {
             <EditSongForm />
           </Route>
           <Route>
-            <Redirect to="/" />
+            <ErrorPage />
           </Route>
           <Route path="/search">
             <Navigation isLoaded={isLoaded} />

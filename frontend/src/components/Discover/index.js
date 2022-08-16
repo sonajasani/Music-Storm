@@ -4,6 +4,7 @@ import {  useHistory } from "react-router-dom";
 
 import Navigation from "../Navigation";
 import { getAllSongs } from "../../store/songs";
+
 import "./Discover.css";
 
 /*********************************************************************************************************************************/

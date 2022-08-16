@@ -11,7 +11,10 @@ export const loadSearchedSongs = (songs) => {
 }
 
 export const getSearchedSongs = (payload) => async (dispatch) => {
+    console.log(payload, "....payload................")
     const response = await csrfFetch(`/api/search/${payload.keyword}`)
+
+    console.log(response, "....searchresponse............")
 
     const songs = await response.json()
     dispatch(loadSearchedSongs(songs))
