@@ -40,7 +40,8 @@ const SearchResults = ({song}) => {
                     <div className="search-track-info">
                         <div className="username-creation-ctn">
                             <div className="search-track-user search-text-color">
-                                {song?.User?.username}
+                                
+                                Artist: {song?.artist}
                             </div>
                         </div>
                         <div className="search-title-genre-ctn">
@@ -48,7 +49,7 @@ const SearchResults = ({song}) => {
                                 <Link to={`/songs/${song?.id}`}>{song.title}</Link>
                             </div>
                             <div className="search-genre search-text-color">
-                                #{song.genre}
+                                || {song.genre} || 
                             </div>
                         </div>
                     </div>
