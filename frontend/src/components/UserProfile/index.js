@@ -63,15 +63,14 @@ function UserProfile({isLoaded}) {
                                 {user?.id === song.userId && (
                                     <div className="edit-delete-button">
                                         <button
-                                            className="fas fa-trash-alt delete__btn"
+                                            className="fas fa-trash-alt delete__btn fa fa-trash"
                                             onClick={() => deleteSongById(song.id, user.id)}
-                                        >Delete
+                                        > Delete
                                         </button>
                                         <button 
-                                        className="fas fa-edit edit__btn"
+                                        className="fa fa-edit edit__btn"
                                         onClick={() => editSongById(song, user.id)}
-                                        >
-                                            Edit
+                                        > Edit
                                         </button>
                                     </div>
                                 )}
