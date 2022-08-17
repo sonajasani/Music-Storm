@@ -28,11 +28,11 @@ export default function Comment({ comment, user, songId }) {
       {user?.id === comment.User.id && (
         <div className="com__btns">
           <i
-            className="fas fa-edit edit__btn"
+            className="fas fa-edit edit__btn fa fa-edit"
             onClick={() => setEditComForm(true)}
           ></i>
           <i
-            className="fas fa-trash-alt delete__btn"
+            className="fas fa-trash-alt delete__btn fa fa-trash"
             onClick={() => dispatch(deleteComment(songId, comment.id, user.id))}
           ></i>
         </div>
