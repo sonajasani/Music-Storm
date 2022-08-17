@@ -168,3 +168,11 @@
     font-weight: 600;
     color: black;
 }
+
+.oops-div{
+    font-size: 150px;
+    padding-top: 15%;
+    padding-bottom: 15%;
+    color: orangered;
+    font-weight: 600;
+}

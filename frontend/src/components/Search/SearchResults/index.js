@@ -40,7 +40,6 @@ const SearchResults = ({song}) => {
                     <div className="search-track-info">
                         <div className="username-creation-ctn">
                             <div className="search-track-user search-text-color">
-                                
                                 Artist: {song?.artist}
                             </div>
                         </div>
