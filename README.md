@@ -99,7 +99,6 @@ The front end is built with React and Javascript while utilizing Redux architect
 - Finally, fire up your servers: run `npm start` in `/backend` and once again in `/frontend`
 
 
-
 ## Roadmap
 See the [open issues](https://github.com/sonajasani/Music-Storm/issues) for a list of proposed features (and known issues).
 
@@ -118,7 +117,6 @@ Contributions are what make the open source community such an amazing place to b
 
 - Sona Jasani - [GitHub](https://github.com/sonajasani)
 - Project Link: [https://github.com/sonajasani/Music-Storm](https://github.com/sonajasani/Music-Storm)
-
 
 
 ## Future Goals
