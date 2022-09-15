@@ -120,8 +120,6 @@ Contributions are what make the open source community such an amazing place to b
 ## Future Goals
 - Define React PropTypes
 - Waveform scrub event
-- Map comments to timeline
 - Player shuffle and repeat
-- Allow users to view and set their own queues
 - Audio player with continuous playback
 - Waveform visualization
