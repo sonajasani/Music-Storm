@@ -64,7 +64,6 @@ Model associations are used to minimize database queries to the backend, assurin
 
 The front end is built with React and Javascript while utilizing Redux architecture, producing a lightning-fast user interface and calling upon dynamically rendered components.
 
-
 ### Technologies
 
 - [JavaScript](https://www.javascript.com/)
